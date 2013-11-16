@@ -44,7 +44,9 @@ int ser_init(char *dev, int br)
 		case 9600:	baud = B9600; break;
 		case 19200:	baud = B19200; break;
 		case 38400:	baud = B38400; break;
+		case 57600:	baud = B57600; break;
 		case 115200:	baud = B115200; break;
+		case 230400:	baud = B230400; break;
 		default:	fprintf(stderr, "Baud rate of %d is invalid \n", br); return -1;
 	}
 	cfsetospeed(&term, baud);
