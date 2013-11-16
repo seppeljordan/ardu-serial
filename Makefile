@@ -1,9 +1,8 @@
-cread:		serialread.o ardu-serial.o
-			gcc -o cread ardu-serial.o serialread.o
-			
+CFLAGS = -pedantic -Wall -ansi
 
-serialread.o:	serialread.c
-			gcc serialread.c -c -o serialread.o -pedantic -Wall -ansi
 
 ardu-serial.o:	ardu-serial.c
-			gcc ardu-serial.c -c -o ardu-serial.o -pedantic -Wall -ansi
+		gcc ardu-serial.c -c -o ardu-serial.o $(CFLAGS)
+
+all:		ardu-serial.o
+
