@@ -8,7 +8,7 @@
 
 #define MAXLINE 1000
 
-int initPort(char *device, int BaudRate);
+int ser_init(char *device, int BaudRate);
 int ser_getc(int file, char *readCharacter);
 int ser_flush(int file);
 int ser_readln(int file, char *buffer);

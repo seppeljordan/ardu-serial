@@ -5,8 +5,8 @@
 #include <unistd.h>
 #include "ardu-serial.h"
 
-
-int initPort(char *dev, int br)
+/* initialize a connection to the arduino */
+int ser_init(char *dev, int br)
 {
 	speed_t baud; /*connection rate */
 	int tt; /* file descriptor of the serial connection */
@@ -29,8 +29,8 @@ int initPort(char *dev, int br)
 	/* set connection rate (baud)*/
 	switch (br)
 	{
-		case 50:		baud = B50; break;
-		case 75:		baud = B75; break;
+		case 50:	baud = B50; break;
+		case 75:	baud = B75; break;
 		case 110:	baud = B110; break;
 		case 134:	baud = B134; break;
 		case 150:	baud = B150; break;
@@ -44,7 +44,8 @@ int initPort(char *dev, int br)
 		case 9600:	baud = B9600; break;
 		case 19200:	baud = B19200; break;
 		case 38400:	baud = B38400; break;
-		default:		fprintf(stderr, "Baud rate of %d is invalid \n", br); return -1;
+		case 115200:	baud = B115200; break;
+		default:	fprintf(stderr, "Baud rate of %d is invalid \n", br); return -1;
 	}
 	cfsetospeed(&term, baud);
 		
@@ -58,7 +59,7 @@ int initPort(char *dev, int br)
 }
 
 
-
+/* Read the next character from the serial device */
 int ser_getc(int fd, char *c)
 {
 	int r; 
@@ -72,26 +73,31 @@ int ser_getc(int fd, char *c)
 	return r;	
 }
 
+/* flush the buffer of the serial device */
 int ser_flush(int fd)
 {
 	sleep(1);
 	return tcflush( fd, TCIOFLUSH);
 }
 
+/* Read from the serial device until a new line character is detected */
 int ser_readln(int fd, char *b)
 {
-	char c;
-	int i, r;
+	char c; /* read character is stored in c */
+	int i; /* count to detect whether MAXLINE is reached */
+	int r; /* return value of ser_getc */
+	
 	for (i = 0; i< MAXLINE; i++) {
 		r = ser_getc(fd, &c);
 		if ( r == -1) {
 			return -1;
 		}
-		if ( c != '\n')
-			*(b+i) = c;
-		else {
+		if ( c = '\n') {  /* terminate string with \0 and quit when new line was detected */
 			*(b+i) = '\0';
 			break;
+		}
+		else {
+			*(b+i) = c; /* write next character to the output buffer */
 		}
 	}
 	return 1;
