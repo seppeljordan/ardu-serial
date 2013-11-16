@@ -68,7 +68,7 @@ int ser_getc(int fd, char *c)
 	do {
 		r = read(fd, c, 1);
 		if (r == -1) {
-			fprintf(stderr, "Cannot read from serial connection");
+			fprintf(stderr, "Cannot read from serial connection\n");
 			return -1;
 		}
 	} while (r == 0);
