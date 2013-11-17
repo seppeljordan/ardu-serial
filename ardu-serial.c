@@ -94,7 +94,7 @@ int ser_readln(int fd, char *b)
 		if ( r == -1) {
 			return -1;
 		}
-		if ( c = '\n') {  /* terminate string with \0 and quit when new line was detected */
+		if ( c == '\n') {  /* terminate string with \0 and quit when new line was detected */
 			*(b+i) = '\0';
 			break;
 		}
