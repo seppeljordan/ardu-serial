@@ -2,23 +2,29 @@ CFLAGS = -pedantic -Wall -ansi
 OBJ = ardu-serial.o
 VERSION = 1.0
 ABIVERSION = 1
+LIBNAME = libarduserial.so
 
 all: libarduserial.so
 
 ardu-serial.o: ardu-serial.c ardu-serial.h
 	gcc ardu-serial.c -c -o ardu-serial.o -fPIC -g $(CFLAGS)
 
-libarduserial.so.$(VERSION): $(OBJ)
-	gcc --shared -Wl,-soname,libarduserial.so.$(ABIVERSION) \
-	    -o libarduserial.so.$(VERSION) ardu-serial.o -lc
+$(LIBNAME).$(VERSION): $(OBJ)
+	gcc --shared -Wl,-soname,$(LIBNAME).$(ABIVERSION) \
+	    -o $(LIBNAME).$(VERSION) $(OBJ) -lc
 
-libarduserial.so.$(ABIVERSION): libarduserial.so.$(VERSION)
-	ln -s libarduserial.so.$(VERSION) libarduserial.so.$(ABIVERSION)
+$(LIBNAME).$(ABIVERSION): $(LIBNAME).$(VERSION)
+	ln -s $(LIBNAME).$(VERSION) $(LIBNAME).$(ABIVERSION)
 	
-libarduserial.so: libarduserial.so.$(ABIVERSION)
-	ln -s libarduserial.so.$(ABIVERSION) libarduserial.so
+$(LIBNAME): $(LIBNAME).$(ABIVERSION)
+	ln -s $(LIBNAME).$(ABIVERSION) $(LIBNAME)
 
 install: ardu-serial.h all
 	cp ardu-serial.h /usr/local/include
-	cp libarduserial.so libarduserial.so.$(ABIVERSION) libarduserial.so.$(VERSION) \
+	cp $(LIBNAME) $(LIBNAME).$(ABIVERSION) $(LIBNAME).$(VERSION) \
 	   /usr/local/lib
+
+.PHONY: clean
+
+clean:
+	rm -f $(OBJ) $(LIBNAME).$(ABIVERSION) $(LIBNAME).$(VERSION) $(LIBNAME)
