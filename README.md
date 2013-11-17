@@ -5,7 +5,7 @@ accessing serial communication with the arduino board
 
 
 Implemented functions
--------------------------------------
+---------------------
 
 * int ser_init(char *device, int BaudRate);
 * int ser_getc(int file, char *readCharacter);
