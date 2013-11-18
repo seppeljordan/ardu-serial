@@ -1,6 +1,8 @@
 ardu-serial
 ===========
 
+Version 1.1
+
 accessing serial communication with the arduino board
 
 
