@@ -6,8 +6,9 @@ LIBNAME = libarduserial.so
 
 LIBPATH = /usr/lib
 INCPATH = /usr/include
+MANPATH = /usr/share/man
 
-all: libarduserial.so
+all: libarduserial.so manpages
 
 ardu-serial.o: ardu-serial.c ardu-serial.h
 	gcc ardu-serial.c -c -o ardu-serial.o -fPIC -g $(CFLAGS)
@@ -22,13 +23,17 @@ $(LIBNAME).$(ABIVERSION): $(LIBNAME).$(VERSION)
 $(LIBNAME): $(LIBNAME).$(ABIVERSION)
 	ln -s $(LIBNAME).$(ABIVERSION) $(LIBNAME)
 
-install: ardu-serial.h all
-	cp ardu-serial.h $(INCPATH)
+manpages: man/man3/ardu-serial.3
+	gzip -kf man/man3/ardu-serial.3
+
+install: all
+	install ardu-serial.h $(INCPATH)
 	cp -d $(LIBNAME) $(LIBNAME).$(ABIVERSION) $(LIBNAME).$(VERSION) \
 	   $(LIBPATH)
 	ldconfig -n $(LIBPATH)
+	install man/man3/ardu-serial.3.gz $(MANPATH)/man3/
 
-.PHONY: clean
+.PHONY: clean manpages
 
 clean:
 	rm -f $(OBJ) $(LIBNAME).$(ABIVERSION) $(LIBNAME).$(VERSION) $(LIBNAME)
