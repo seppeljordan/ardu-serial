@@ -1,7 +1,7 @@
 ardu-serial
 ===========
 
-Version 1.1
+Version 1.2
 
 accessing serial communication with the arduino board
 
@@ -15,3 +15,14 @@ Implemented functions
 * int ser_readln(int file, char *buffer);
 * int ser_putc(int file, char character);
 * int ser_println(int file, char *buffer);
+
+Patch notes
+-----------
+
+version 1.2
+
+* added a manpage
+
+version 1.1
+
+* fixed a bug in ser_println

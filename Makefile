@@ -1,6 +1,6 @@
 CFLAGS = -pedantic -Wall -ansi
 OBJ = ardu-serial.o
-VERSION = 1.1
+VERSION = 1.2
 ABIVERSION = 1
 LIBNAME = libarduserial.so
 
