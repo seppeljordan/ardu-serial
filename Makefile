@@ -4,6 +4,9 @@ VERSION = 1.1
 ABIVERSION = 1
 LIBNAME = libarduserial.so
 
+LIBPATH = /usr/lib
+INCPATH = /usr/include
+
 all: libarduserial.so
 
 ardu-serial.o: ardu-serial.c ardu-serial.h
@@ -20,9 +23,10 @@ $(LIBNAME): $(LIBNAME).$(ABIVERSION)
 	ln -s $(LIBNAME).$(ABIVERSION) $(LIBNAME)
 
 install: ardu-serial.h all
-	cp ardu-serial.h /usr/local/include
-	cp $(LIBNAME) $(LIBNAME).$(ABIVERSION) $(LIBNAME).$(VERSION) \
-	   /usr/local/lib
+	cp ardu-serial.h $(INCPATH)
+	cp -d $(LIBNAME) $(LIBNAME).$(ABIVERSION) $(LIBNAME).$(VERSION) \
+	   $(LIBPATH)
+	ldconfig -n $(LIBPATH)
 
 .PHONY: clean
 
