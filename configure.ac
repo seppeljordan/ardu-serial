@@ -1,11 +1,10 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.69])
-AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
-AC_CONFIG_SRCDIR([ardu-serial.h])
+AC_INIT([arduserial], [1.2-dev], [sebastian.jordan.mail@googlemail.com])
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile])
+AM_INIT_AUTOMAKE([-Wall])
+AC_INIT
 
 # Checks for programs.
 AC_PROG_CC
@@ -19,4 +18,5 @@ AC_CHECK_HEADERS([fcntl.h stdlib.h termios.h unistd.h])
 
 # Checks for library functions.
 
+AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
