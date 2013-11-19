@@ -10,4 +10,25 @@ config.h.in
 config.log
 config.status
 configure
+.deps/
+.libs/
+ChangeLog
+Makefile
+Makefile.in
+aclocal.m4
+ar-lib
+arduserial.lo
+compile
+config.guess
+config.h.in~
+config.sub
+configure.scan
+depcomp
+install-sh
+libarduserial.la
+libtool
+ltmain.sh
+m4/
+missing
+stamp-h1
 

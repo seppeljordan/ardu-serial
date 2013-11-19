@@ -1,13 +1,17 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([arduserial], [1.2-dev], [sebastian.jordan.mail@googlemail.com])
+ACLOCAL_AMFLAGS([[-I m4]])
+AC_INIT([arduserial], [1.3], [sebastian.jordan.mail@googlemail.com])
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([-Wall])
-AC_INIT
+AM_PROG_AR
+LT_INIT
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_LIBTOOL
 
 # Checks for libraries.
 
