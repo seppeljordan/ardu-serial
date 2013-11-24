@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 ACLOCAL_AMFLAGS([[-I m4]])
-AC_INIT([arduserial], [1.3], [sebastian.jordan.mail@googlemail.com])
+AC_INIT([arduserial], [1.4], [sebastian.jordan.mail@googlemail.com])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([-Wall])

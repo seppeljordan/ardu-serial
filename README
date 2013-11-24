@@ -1,7 +1,7 @@
 ardu-serial
 ===========
 
-Version 1.3
+Version 1.4
 
 accessing serial communication with the arduino board
 
@@ -18,6 +18,11 @@ Implemented functions
 
 Patch notes
 -----------
+
+version 1.4
+
+* improved initialization process of the serial connection
+* fixed a bug with readln
 
 version 1.3
 
