@@ -3,7 +3,13 @@
 #include <termios.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/ioctl.h>
 #include "ardu-serial.h"
+
+#define READTRYS 10
+#define READTRYTIME 100 * 1000
+
+#define SERIALDEBUG
 
 /* initialize a connection to the arduino */
 int ser_init(char *dev, int br)
@@ -13,7 +19,7 @@ int ser_init(char *dev, int br)
 	struct termios term; /* terminal conection to serial device */
 	
 	/* Test, if serial port is available */
-	tt = open(dev, O_RDWR | O_NONBLOCK);
+	tt = open(dev, O_RDWR | O_NOCTTY);
 	if ( tt == -1 )
 	{
 		fprintf(stderr, "Unable to open serial port %s\n", dev);
@@ -50,6 +56,20 @@ int ser_init(char *dev, int br)
 		default:	fprintf(stderr, "Baud rate of %d is invalid \n", br); return -1;
 	}
 	cfsetospeed(&term, baud);
+	
+	term.c_cflag &= ~PARENB; /* Disable parity bit */
+	term.c_cflag &= ~CSTOPB; /* No stop bit */
+	term.c_cflag &= ~CSIZE; /* No size bit */
+	term.c_cflag |= CS8; /* 8 bit words */
+	term.c_cflag &= ~CRTSCTS; /* disable hardware flow controll */
+	term.c_iflag &= ~(IXON | IXOFF | IXANY); /* disable input/output flow controll, 
+	                                            disable restart chars*/
+	term.c_lflag &= ~(ECHO | ECHOE | ISIG); /* no echo disable visually erase chars,
+						   disable terminal-generated signas*/
+	term.c_lflag |= ICANON; /* non-canonical mode */
+	term.c_oflag &= ~OPOST; /* disable output processing */
+	term.c_cc[VMIN] = 1; /* only read if input is available */
+	term.c_cc[VTIME] = 0; /* try reading for at least 1 deci second */
 		
 	/* set terminal attributes for the serial connection */
 	if (tcsetattr(tt, TCSANOW, &term) == -1) {
@@ -64,45 +84,54 @@ int ser_init(char *dev, int br)
 /* Read the next character from the serial device */
 int ser_getc(int fd, char *c)
 {
-	int r; 
+	int r; /* store return value of read */ 
+	int rt = READTRYS; /* set number of retries */
+
 	do {
 		r = read(fd, c, 1);
 		if (r == -1) {
-			fprintf(stderr, "Cannot read from serial connection\n");
+			if (rt-- > 0) {
+				usleep(READTRYTIME);
+				continue;
+			}
 			return -1;
 		}
-	} while (r == 0);
+	} while (r != 1); /* repeat reading until one character was succesfully read */
 	return r;	
 }
 
 /* flush the buffer of the serial device */
 int ser_flush(int fd)
 {
-	sleep(1);
 	return tcflush( fd, TCIOFLUSH);
 }
 
-/* Read from the serial device until a new line character is detected */
+/* Read from the serial device until a new line character is detected 
+   Return value:
+   Returns the number of characters read.
+*/
 int ser_readln(int fd, char *b)
 {
 	char c; /* read character is stored in c */
 	int i; /* count to detect whether MAXLINE is reached */
 	int r; /* return value of ser_getc */
 	
-	for (i = 0; i< MAXLINE; i++) {
+	for (i = 0; i< (MAXLINE -1) ; i++) {
 		r = ser_getc(fd, &c);
-		if ( r == -1) {
+		
+		if ( r == -1) { /* exit the function if an read error was detected */
 			return -1;
 		}
 		if ( c == '\n') {  /* terminate string with \0 and quit when new line was detected */
 			*(b+i) = '\0';
-			break;
+			return i ;
 		}
 		else {
 			*(b+i) = c; /* write next character to the output buffer */
 		}
 	}
-	return 1;
+	*( b+i+1 ) = '\0';
+	return i;
 }
 
 /* write a single character to the serial connection */
