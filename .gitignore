@@ -9,7 +9,6 @@ autoscan.log
 config.log
 .deps/
 .libs/
-ChangeLog
 Makefile
 aclocal.m4
 arduserial.lo
@@ -17,6 +16,5 @@ config.h.in~
 configure.scan
 libarduserial.la
 libtool
-missing
 stamp-h1
 test/
