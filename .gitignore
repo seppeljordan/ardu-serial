@@ -6,14 +6,11 @@
 *.gz
 autom4te.cache/
 autoscan.log
-config.h
-config.h.in
 config.log
 .deps/
 .libs/
 ChangeLog
 Makefile
-Makefile.in
 aclocal.m4
 arduserial.lo
 compile
