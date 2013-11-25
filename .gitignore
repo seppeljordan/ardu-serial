@@ -13,10 +13,8 @@ ChangeLog
 Makefile
 aclocal.m4
 arduserial.lo
-compile
 config.h.in~
 configure.scan
-depcomp
 libarduserial.la
 libtool
 missing
