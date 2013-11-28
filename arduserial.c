@@ -156,10 +156,14 @@ int ser_putc(int f, char c)
 int ser_println(int f, char *b)
 {
 	int l = strlen(b);
+	
+	/* write string to serial connection */
 	if (write(f, b, l) == -1) {
 		print_err_msg;
 		return -1;
 	}
+	
+	/* write new line to serial connection */
 	if (ser_putc(f, '\n') == -1) {
 		print_err_msg;
 		return -1;

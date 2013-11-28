@@ -1,20 +1,32 @@
 ardu-serial
 ===========
 
-Version 1.6
+This software package aims to deliver a c library for estableshing a serial
+connectin to a arduino board.
 
-accessing serial communication with the arduino board
-
+This package is under heavy devolopment and only tested for the Arduino Uno.
+The current version is 1.6
 
 Implemented functions
 ---------------------
 
 * int ser_init(char *device, int BaudRate);
-* int ser_getc(int file, char *readCharacter);
+Initializes a connection to the arduino at the given path "device" with the given baud rate "BaudRate".
+
 * int ser_flush(int file);
+Flushes the serial interface "file".
+
+* int ser_getc(int file, char *readCharacter);
+Reads one character from the serial interface. Returns -1 if something went wrong and prints an error message to stderr.
+
 * int ser_readln(int file, char *buffer);
+Reads from the serial interface until a newline character is detected. The newline character will be stript and replaced by a null character (\0) to terminate the string.
+
 * int ser_putc(int file, char character);
+Writes one character to the serial interface. Returns 0 if something went wrong and prints an error message to the standard output if something went wrong.
+
 * int ser_println(int file, char *buffer);
+Prints a string to the serial interface "file" and additionally prints a newline character to the serial interface.
 
 Patch notes
 -----------
