@@ -11,7 +11,7 @@
 #define READTRYS 10
 #define READTRYTIME 100 * 1000
 
-#define printerr fprintf(stderr, strerror(errno))
+#define print_err_msg fprintf(stderr, strerror(errno))
 
 /* initialize a connection to the arduino */
 int ser_init(char *dev, int br)
@@ -96,7 +96,7 @@ int ser_getc(int fd, char *c)
 				usleep(READTRYTIME);
 				continue;
 			}
-			printerr;
+			print_err_msg;
 			return -1;
 		}
 	} while (r != 1); /* repeat reading until one character was succesfully read */
@@ -144,23 +144,25 @@ int ser_readln(int fd, char *b)
 /* write a single character to the serial connection */
 int ser_putc(int f, char c)
 {
-	int r =  write(f, &c, 1);
+	int r = write(f, &c, 1);
 	if (r == -1) {
-		printerr;
+		print_err_msg;
 		return -1;
-	}
-	return r;	
+	} else
+		return r;
 }
 
 /* write a string to the serial connection and terminate with a newline character */
 int ser_println(int f, char *b)
 {
 	int l = strlen(b);
-	if (-1 == write(f, b, l))
-		printerr;
+	if (write(f, b, l) == -1) {
+		print_err_msg;
 		return -1;
-	if (-1 == ser_putc(f, '\n'))
-		printerr;
+	}
+	if (ser_putc(f, '\n') == -1) {
+		print_err_msg;
 		return -1;
+	}
 	return 1;
 }
