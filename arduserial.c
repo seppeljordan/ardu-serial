@@ -6,11 +6,12 @@
 #include <sys/ioctl.h>
 #include "ardu-serial.h"
 #include <string.h>
+#include <errno.h>
 
 #define READTRYS 10
 #define READTRYTIME 100 * 1000
 
-#define printerr fprintf(stderr, strerror(perror))
+#define printerr fprintf(stderr, strerror(errno))
 
 /* initialize a connection to the arduino */
 int ser_init(char *dev, int br)
