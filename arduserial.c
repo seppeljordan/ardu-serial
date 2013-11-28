@@ -154,11 +154,6 @@ int ser_putc(int f, char c)
 /* write a string to the serial connection and terminate with a newline character */
 int ser_println(int f, char *b)
 {
-/*	while ( *b != '\0') {
-		ser_putc(f, *(b++));
-	}
-	ser_putc(f, '\n');
-*/
 	int l = strlen(b);
 	if (-1 == write(f, b, l))
 		printerr;
