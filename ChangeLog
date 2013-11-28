@@ -1,3 +1,8 @@
+version 1.6
+
+* fixed a bug in ser_writeln should work properly now
+* increased library version number to 1:0:0
+
 version 1.5
 
 * fixed installation routine by adding the right autotool files to the repo
