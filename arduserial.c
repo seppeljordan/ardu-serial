@@ -75,7 +75,8 @@ int ser_init(char *dev, int br)
 		
 	/* set terminal attributes for the serial connection */
 	if (tcsetattr(tt, TCSANOW, &term) == -1) {
-		fprintf(stderr, "Unable to set terminal attributes for serial connection %s\n", dev);
+		fprintf(stderr, "Unable to set terminal attributes for serial connection %s\n", 
+		        dev);
 		return -1;
 	}
 	
@@ -110,9 +111,8 @@ int ser_flush(int fd)
 }
 
 /* Read from the serial device until a new line character is detected 
-   Return value:
-   Returns the number of characters read.
-*/
+ * Return value: Returns the number of characters read.
+ */
 int ser_readln(int fd, char *b)
 {
 	char c; /* read character is stored in c */
@@ -152,7 +152,15 @@ int ser_putc(int f, char c)
 		return r;
 }
 
-/* write a string to the serial connection and terminate with a newline character */
+/* Write a string of characters to the serial connection and terminate with a
+ * newline character.
+ * 
+ * This function prints the string gives as the second parameter to the serial
+ * connection given with the first parameter.
+ * 
+ * Return: ser_println() will return 1 if the data has been writen succesfully 
+	 to the serial connection and will return -1 if something went wrong. */
+	 
 int ser_println(int f, char *b)
 {
 	int l = strlen(b);
