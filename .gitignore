@@ -34,3 +34,4 @@ depcomp
 config.guess
 install-sh
 ltmain.sh
+m4/
