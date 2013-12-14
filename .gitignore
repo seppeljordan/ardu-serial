@@ -29,3 +29,8 @@ compile
 configure
 config.h
 config.h.in
+depcomp
+#*#
+config.guess
+install-sh
+ltmain.sh

@@ -15,6 +15,7 @@ Read "INSTALL" for instructions on the installation process.
 If you downloaded the software directly from the github repo then you
 need autotools to get this package installed and running.
 
+* libtoolize
 * aclocal
 * autoheader
 * autoconf
