@@ -1,5 +1,5 @@
 set testdata {
-	{"ser_init1" "0  /dev/notexistant 9600" "^-1.*$"}
+	{"ser_init1" "0  /dev/notexistant 9600" "^-1.*$"} # Try to initialize non-valid connection
 }
 
 global TESTARDUSERIAL
