@@ -7,7 +7,7 @@ testarduserial_LDADD = libarduserial.la
 
 lib_LTLIBRARIES = libarduserial.la
 libarduserial_la_SOURCES = arduserial.c
-libarduserial_la_LDFLAGS = -version-info 1:0:0
+libarduserial_la_LDFLAGS = -version-info 1:1:0
 include_HEADERS = arduserial.h
 
 CLEANFILES = *~

@@ -1,11 +1,11 @@
 ardu-serial
 ===========
 
-This software package aims to deliver a c library for estableshing a serial
-connectin to a arduino board.
+This software package aims to deliver a c library for estableshing a
+serial connectin to a arduino board.
 
-This package is under heavy devolopment and only tested for the Arduino Uno.
-The current version is 1.6
+This package is under heavy devolopment and only tested for the
+Arduino Uno.  The current version is 1.7
 
 Installation
 ------------
@@ -26,26 +26,77 @@ Now you can follow the instructions from "INSTALL".
 Implemented functions
 ---------------------
 
-* int ser_init(char *device, int BaudRate);
-Initializes a connection to the arduino at the given path "device" with the given baud rate "BaudRate".
+* int ser_init(char *device, int BaudRate); 
+
+Initializes a connection to the arduino at the given path "device"
+with the given baud rate "BaudRate".
 
 * int ser_flush(int file);
+
 Flushes the serial interface "file".
 
 * int ser_getc(int file, char *readCharacter);
-Reads one character from the serial interface. Returns -1 if something went wrong and prints an error message to stderr.
+
+Reads one character from the serial interface. Returns -1 if something
+went wrong and prints an error message to stderr.
 
 * int ser_readln(int file, char *buffer);
-Reads from the serial interface until a newline character is detected. The newline character will be stript and replaced by a null character (\0) to terminate the string.
+
+Reads from the serial interface until a newline character is
+detected. The newline character will be stript and replaced by a null
+character (\0) to terminate the string.
 
 * int ser_putc(int file, char character);
-Writes one character to the serial interface. Returns 0 if something went wrong and prints an error message to the standard output if something went wrong.
+
+Writes one character to the serial interface. Returns 0 if something
+went wrong and prints an error message to the standard output if
+something went wrong.
 
 * int ser_println(int file, char *buffer);
-Prints a string to the serial interface "file" and additionally prints a newline character to the serial interface.
+
+Prints a string to the serial interface "file" and additionally prints
+a newline character to the serial interface.
 
 Patch notes
 -----------
 
-see ChangeLog
+verion 1.7 
+
+* removed the files that were generated automatically from the version
+  control
+
+* slight changes to the initialization process prints more error
+  messages when the library does system calls that fail
+
+version 1.6
+
+* fixed a bug in ser_writeln should work properly now
+
+* increased library version number to 1:0:0
+
+version 1.5
+
+* fixed installation routine by adding the right autotool files to the
+  repo
+
+version 1.4
+
+* improved initialization process of the serial connection
+
+* fixed a bug with readln
+
+version 1.3
+
+* added autotoolsupport to make the library (potentially) more
+  portable
+
+* set library version to 0:0:0
+
+version 1.2
+
+* added a manpage
+
+version 1.1
+
+* fixed a bug in ser_println
 

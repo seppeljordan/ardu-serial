@@ -1,3 +1,10 @@
+2013-12-14  Sebastian Jordan  <sebastian.jordan.mail@googlemail.org>
+	* autotools: removed the files that were generated automatically
+	from the version control
+
+	* arduserial.c: slight changes to the initialization process
+	prints more error messages when the library does system calls that fail
+
 version 1.6
 
 * fixed a bug in ser_writeln should work properly now
