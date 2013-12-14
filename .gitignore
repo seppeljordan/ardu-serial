@@ -5,8 +5,6 @@
 *.scite
 *.gz
 autom4te.cache/
-autoscan.log
-config.log
 .deps/
 .libs/
 Makefile
@@ -19,3 +17,5 @@ libtool
 stamp-h1
 test/
 *.anjuta
+*.log
+*.sum
