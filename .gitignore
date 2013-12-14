@@ -19,3 +19,13 @@ test/
 *.anjuta
 *.log
 *.sum
+Makefile.in
+ar-lib
+config.status
+config.sub
+site.exp
+.anjuta_sym_db.db
+compile
+configure
+config.h
+config.h.in

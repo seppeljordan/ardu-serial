@@ -7,6 +7,21 @@ connectin to a arduino board.
 This package is under heavy devolopment and only tested for the Arduino Uno.
 The current version is 1.6
 
+Installation
+------------
+
+Read "INSTALL" for instructions on the installation process.
+
+If you downloaded the software directly from the github repo then you
+need autotools to get this package installed and running.
+
+* aclocal
+* autoheader
+* autoconf
+* automake --add-missing --include-deps
+
+Now you can follow the instructions from "INSTALL".
+
 Implemented functions
 ---------------------
 
