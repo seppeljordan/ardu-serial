@@ -35,3 +35,4 @@ config.guess
 install-sh
 ltmain.sh
 m4/
+missing
