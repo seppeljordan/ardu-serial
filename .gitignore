@@ -18,3 +18,4 @@ libarduserial.la
 libtool
 stamp-h1
 test/
+*.anjuta
