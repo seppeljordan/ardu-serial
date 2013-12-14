@@ -59,19 +59,17 @@ int ser_init(char *dev, int br)
 	}
 	cfsetospeed(&term, baud);
 	
-	term.c_cflag &= ~PARENB; /* Disable parity bit */
-	term.c_cflag &= ~CSTOPB; /* No stop bit */
-	term.c_cflag &= ~CSIZE; /* No size bit */
+	/* Disable: parity bit, stop bit, size bit, hardware flow control) */
+	term.c_cflag &= ~(PARENB | CSTOPB | CSIZE | CRTSCTS );
 	term.c_cflag |= CS8; /* 8 bit words */
-	term.c_cflag &= ~CRTSCTS; /* disable hardware flow controll */
 	term.c_iflag &= ~(IXON | IXOFF | IXANY); /* disable input/output flow controll, 
 	                                            disable restart chars*/
 	term.c_lflag &= ~(ECHO | ECHOE | ISIG); /* no echo disable visually erase chars,
 						   disable terminal-generated signas*/
-	term.c_lflag |= ICANON; /* non-canonical mode */
+	term.c_lflag |= ICANON; /* canonical mode */
 	term.c_oflag &= ~OPOST; /* disable output processing */
-	term.c_cc[VMIN] = 1; /* only read if input is available */
-	term.c_cc[VTIME] = 0; /* try reading for at least 1 deci second */
+	term.c_cc[VMIN] = 1; /* read one character at a time */
+	term.c_cc[VTIME] = 0; /* no time limit */
 		
 	/* set terminal attributes for the serial connection */
 	if (tcsetattr(tt, TCSANOW, &term) == -1) {
@@ -159,7 +157,7 @@ int ser_putc(int f, char c)
  * connection given with the first parameter.
  * 
  * Return: ser_println() will return 1 if the data has been writen succesfully 
-	 to the serial connection and will return -1 if something went wrong. */
+ * to the serial connection and will return -1 if something went wrong. */
 	 
 int ser_println(int f, char *b)
 {
