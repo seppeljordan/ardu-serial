@@ -3,6 +3,7 @@
 
 ACLOCAL_AMFLAGS([[-I m4]])
 AC_INIT([arduserial], [1.7], [sebastian.jordan.mail@googlemail.com])
+AC_CONFIG_SRCDIR([libarduserial/arduserial.c])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([-Wall])
@@ -22,5 +23,8 @@ AC_CHECK_HEADERS([fcntl.h stdlib.h termios.h unistd.h])
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile 
+    libarduserial/Makefile 
+    testsuite/Makefile 
+    testsuite/arduserial/Makefile])
 AC_OUTPUT
