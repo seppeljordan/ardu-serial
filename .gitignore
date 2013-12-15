@@ -31,9 +31,13 @@ config.h
 config.h.in
 depcomp
 #*#
+*/#*#
 config.guess
 install-sh
 ltmain.sh
 m4/
 missing
 test-driver
+*.bak
+testsuite/arduserial/testarduserial
+testsuite/arduserial/testarduserial.trs
