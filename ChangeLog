@@ -1,3 +1,14 @@
+2013-12-18  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
+
+	* .gitignore: added the executables of the tests to .gitignore
+	* testsuite/arduserial/testreadln.c (main): implemented a test for
+	readln but it is not working (memory access violation)
+	* testsuite/arduserial/testinit.c: implemented a test for ser_init 
+	function that makes tests for an error when accessing a non existant
+	serial connection
+	* testsuite/arduserial/testflush.c (main): implemented a test for
+	ser_flush function. Does not work right now (memory access violation)
+
 2013-12-14  Sebastian Jordan  <sebastian.jordan.mail@googlemail.org>
 	* autotools: removed the files that were generated automatically
 	from the version control

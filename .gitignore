@@ -40,4 +40,11 @@ missing
 test-driver
 *.bak
 testsuite/arduserial/testarduserial
-testsuite/arduserial/testarduserial.trs
+testsuite/arduserial/testarduserial.trstestsuite/arduserial/testreadln.trs
+testsuite/arduserial/testflush
+testsuite/arduserial/testflush.trs
+testsuite/arduserial/testinit
+testsuite/arduserial/testinit.trs
+testsuite/arduserial/testreadln
+testsuite/arduserial/testreadln.trs
+.project

@@ -1,7 +1,9 @@
-TESTS = testarduserial
+TESTS = testinit testreadln testflush
 
-bin_PROGRAMS = testarduserial
-testarduserial_SOURCES = testarduserial.c
-testarduserial_LDADD = $(top_builddir)/libarduserial/libarduserial.la
+bin_PROGRAMS = testinit testreadln testflush
 
-noinst_PROGRAMS = testarduserial
+testinit_LDADD 		= $(top_builddir)/libarduserial/.libs/libarduserial.la
+testreadln_LDADD 	= $(top_builddir)/libarduserial/.libs/libarduserial.la
+testflush_LDADD 	= $(top_builddir)/libarduserial/.libs/libarduserial.la
+
+noinst_PROGRAMS = testinit testreadln testflush
