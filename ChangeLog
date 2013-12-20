@@ -1,3 +1,13 @@
+2013-12-20  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
+
+	* libarduserial/arduserial.c (ser_readln): fixed a bug where the program
+	did not expect a cariage return, expexted new line. improved performance
+	slightly.
+	* testsuite/arduserial/testreadln.c (main): translated a debug message
+	into english. Added a check for the length of the read string. Check
+	for nul termination of the read string. added a constant to store the
+	the message the arduino sends.
+
 2013-12-19  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 	
 	* testsuite/testdef.h: created a header file to include for testing, like
