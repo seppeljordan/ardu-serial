@@ -1,3 +1,14 @@
+2013-12-19  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
+	
+	* testsuite/testdef.h: created a header file to include for testing, like
+	return codes and the path to the arduino connected.
+	* testsuite/arduserial/Makefile.am: should work correctly now and build
+	the testprograms
+	* testsuite/arduserial/testflush.c: uses now a fixed size string
+	to read the message from the board and includes testdef.h
+	* testsuite/arduserial/testreadln.c: includes now testdef.h.  added
+	some more verbose output for debugging purposes.
+
 2013-12-18  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
 	* .gitignore: added the executables of the tests to .gitignore

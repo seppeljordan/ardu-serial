@@ -1,20 +1,20 @@
 #include "arduserial.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-
-#define DEVPATH "/dev/ttyACM0"
-#define BAUD 9600
+#include "../testdef.h"
 
 int main() {
 	int i;
-	int tty = ser_init(DEVPATH, BAUD);
+	int tty = ser_init(ARDUINOPATH, BAUDRATE);
+	/* Skip the test if the arduino was not found */
+	if (tty == -1)
+		exit(TESTSKIP);
 	sleep(2);
 	ser_flush(tty);
 	printf("Serial I/O flushed\n");	
 	for (i = 0; i < 4; i++) {
 		int reads; /* return value of ser_read */
-		char *message;
+		char message[MAXLINE];
 		char buf[MAXLINE]; /* buffer for the returned string */
 
 		/* Write the message to the arduino */
@@ -30,5 +30,5 @@ int main() {
 		}
 		printf("%s\n", buf);
 	}
-	return 0;
+	return TESTPASS;
 }

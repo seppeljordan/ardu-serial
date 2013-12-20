@@ -48,3 +48,6 @@ testsuite/arduserial/testinit.trs
 testsuite/arduserial/testreadln
 testsuite/arduserial/testreadln.trs
 .project
+.autotools
+.cproject
+.settings
