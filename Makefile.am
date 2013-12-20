@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = libarduserial testsuite
+SUBDIRS = libarduserial testsuite info
 
 CLEANFILES = *~
 DISTCLEANFILES = *~

@@ -26,5 +26,6 @@ AC_CHECK_HEADERS
 AC_CONFIG_FILES([Makefile 
     libarduserial/Makefile 
     testsuite/Makefile 
-    testsuite/arduserial/Makefile])
+    testsuite/arduserial/Makefile
+    info/Makefile])
 AC_OUTPUT
