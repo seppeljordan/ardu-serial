@@ -5,7 +5,7 @@ This software package aims to deliver a c library for estableshing a
 serial connectin to a arduino board.
 
 This package is under heavy devolopment and only tested for the
-Arduino Uno.  The current version is 1.7
+Arduino Uno.  The current version is 1.8
 
 Installation
 ------------
