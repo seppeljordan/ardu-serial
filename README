@@ -60,7 +60,13 @@ a newline character to the serial interface.
 Patch notes
 -----------
 
-verion 1.7 
+version 1.8
+
+* fixed a bug in ser_readln function
+
+* added some tests (make check)
+
+version 1.7 
 
 * removed the files that were generated automatically from the version
   control
