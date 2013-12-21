@@ -1,4 +1,4 @@
-#include "arduserial.h"
+#include "../../libarduserial/arduserial.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "../testdef.h"

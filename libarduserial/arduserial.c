@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
-#include "ardu-serial.h"
+#include "arduserial.h"
 #include <string.h>
 #include <errno.h>
 

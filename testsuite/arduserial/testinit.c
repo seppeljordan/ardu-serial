@@ -1,7 +1,7 @@
 /* This program is a test driver for the arduserial library. */
 #include <stdio.h>
 #include <stdlib.h>
-#include "arduserial.h"
+#include "../../libarduserial/arduserial.h"
 
 #define FAILURE 1
 
