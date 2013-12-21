@@ -1,0 +1,45 @@
+/input texinfo
+@c %**begin header
+@setfilename arduserial.info
+@settitle arduserial 1
+@c %**end header
+
+@copying
+This manual is for the library arduserial, version 1.8
+
+Copyright @copyright{} 2013 Sebastian Jordan
+
+@titlepage
+@title A Manual for the Library arduserial.
+@author Sebastian Jordan
+
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+
+
+@contents
+
+
+@ifnottex
+@node Top
+@top arduserial
+
+This manual is for the library arduserial, version 1.8
+@end ifnottex
+
+
+@menu
+* API:: The API explained
+@end menu
+
+@node API
+@chapter API
+
+@cindex api
+@cindex chapter, api
+
+@code
+{
+int ser_init(char *device, int baud);
+}
