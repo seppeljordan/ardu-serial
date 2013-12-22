@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
 	int charactersRead;
 	char readBuffer[MAXLINE];
 	int fd;
-	printf("Start des Initializierungsprozesses\n");
+	printf("Start initialization process\n");
 	fd = ser_init(ARDUINOPATH, BAUDRATE);
 	sleep(2);
 	if (fd == -1) {
@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 	charactersRead = ser_readln(fd, readBuffer);
 	if (charactersRead != strlen(WELCOME_STRING)) {
 		/* Test failed */
-		printf("Not the correct amount of characters were read [%i]\n",
+		printf("Not the correct amount of characters was read [%i]\n",
 				charactersRead);
 		exit(TESTFAIL);
 	}

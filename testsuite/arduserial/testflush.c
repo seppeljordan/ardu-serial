@@ -4,31 +4,31 @@
 #include "../testdef.h"
 
 int main() {
-	int i;
-	int tty = ser_init(ARDUINOPATH, BAUDRATE);
+	int tty; /* This is the file descriptor of the serial port */
+	int reads; /* return value of ser_read */
+	char buf[MAXLINE]; /* buffer for the returned string */
+	char message[MAXLINE]; /* message sent to the arduino */
+
+	/* try to initialize the connection to the arduino */
+	tty = ser_init(ARDUINOPATH, BAUDRATE);
 	/* Skip the test if the arduino was not found */
 	if (tty == -1)
 		exit(TESTSKIP);
-	sleep(2);
+	sleep(2); /* Wait until the arduino has reset */
+
+
 	ser_flush(tty);
-	printf("Serial I/O flushed\n");	
-	for (i = 0; i < 4; i++) {
-		int reads; /* return value of ser_read */
-		char message[MAXLINE];
-		char buf[MAXLINE]; /* buffer for the returned string */
+	printf("Serial I/O flushed\n");
+	sprintf(message, "Test");
+	printf("Print \"%s\" to Arduino\n", message);
+	ser_println(tty, message);
 
-		/* Write the message to the arduino */
-		sprintf(message, "Test[%d]", i);
-		printf("Print \"%s\" to Arduino\n", message);
-		ser_println(tty, message);
-
-		/* Read the message from the arduino */
-		printf("[%d] Read from Arduino:\n", i);
-		reads = ser_readln(tty, buf);
-		if (reads == -1) {
-			fprintf(stderr, "Read failed\n");
-		}
-		printf("%s\n", buf);
+	/* read the string from the arduino */
+	reads = ser_readln(tty, buf);
+	if (strcmp(reads,"Test program for testing libarduserial") == 0){
+		printf("Test failed, flush did not work correctly");
+		exit(TESTFAIL);
 	}
+
 	return TESTPASS;
 }
