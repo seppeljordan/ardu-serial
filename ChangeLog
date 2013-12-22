@@ -14,9 +14,6 @@
 
 2013-12-21  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
-
-2013-12-21  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
-
 	* testsuite/arduserial/testreadln.c, testsuite/arduserial/testinit.c, 
 	testsuite/arduserial/testflush.c, libarduserial/arduserial.c: fixed a 
 	bug with the header includes
