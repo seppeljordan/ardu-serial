@@ -8,7 +8,7 @@
 #define WELCOME_STRING "Test program for testing libarduserial"
 
 int main(int argc, char **argv) {
-	int charactersRead;
+	int charactersAmount;
 	char readBuffer[MAXLINE];
 	int fd;
 	printf("Start initialization process\n");
@@ -19,18 +19,24 @@ int main(int argc, char **argv) {
 		exit(TESTSKIP);
 	}
 	printf("Arduino initialized\n");
-	charactersRead = ser_readln(fd, readBuffer);
-	if (charactersRead != strlen(WELCOME_STRING)) {
-		/* Test failed */
-		printf("Not the correct amount of characters was read [%i]\n",
-				charactersRead);
-		exit(TESTFAIL);
-	}
-	if (strlen(readBuffer) != charactersRead) {
+	charactersAmount = ser_readln(fd, readBuffer);
+
+	/* Test for null termination of the string */
+	if (strlen(readBuffer) != charactersAmount) {
 		printf("Read string is not 0-terminated.\n");
 		exit(TESTFAIL);
 	}
-	if (strncmp(WELCOME_STRING, readBuffer, charactersRead) != 0) {
+
+	/* Check for the correct return value of ser_readln */
+	if (charactersAmount != strlen(WELCOME_STRING)) {
+		/* Test failed */
+		printf("Not the correct amount of characters was read [%i]\n",
+				charactersAmount);
+		printf("\"%s\" read", readBuffer);
+		exit(TESTFAIL);
+	}
+
+	if (strncmp(WELCOME_STRING, readBuffer, charactersAmount) != 0) {
 		/* Test failed, String read from arduino is not correct */
 		printf("Failed to read the correct string from the arduino.\n");
 		printf("\"%s\" was read\n", readBuffer);
@@ -38,5 +44,6 @@ int main(int argc, char **argv) {
 	}
 	printf("String read from the arduino was correct.\n");
 	printf("\"%s\" was read\n", readBuffer);
+	printf("Test: PASS\n");
 	exit(TESTPASS);
 }

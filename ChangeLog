@@ -1,10 +1,17 @@
 2013-12-22  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
+	* testsuite/arduserial/testinit.c: includes the test header now 
+	* testsuite/arduserial/testreadln.c: added some debugging output,
+	renamed buffer variable for ser_read 
+	* testsuite/arduserial/testflush.c: fixed a bug so that the test works correctly
+
+2013-12-22  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
+
 	* testsuite/arduserial/testreadln.c (main): corrected some typos at the
 	debugging output
 	* testsuite/arduserial/testflush.c (main): reimplemented test so that is
-	tests ser_flush correctly
-	 
+	tests ser_flush correctly 
+
 2013-12-21  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
 

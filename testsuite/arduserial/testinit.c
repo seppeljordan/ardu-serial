@@ -2,13 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../libarduserial/arduserial.h"
-
-#define FAILURE 1
+#include "../testdef.h"
 
 int main(int argc, char **argv)
 {
   int retValue = ser_init("/dev/nodevice", 9600);
   if (retValue != -1)
-    exit(FAILURE);
-  exit(0);
+    exit(TESTFAIL);
+  exit(TESTPASS);
 }

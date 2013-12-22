@@ -154,7 +154,7 @@ int ser_readln(int fd, char *b) {
 		r = ser_getc(fd, &c);
 
 		/* strip of the carriage return and replace it with termination character \0 */
-		if (c == '\r') {
+		if ((c == '\r')||(c == '\n')) {
 			*(b + i) = '\0';
 			return i;
 		} else if (r != -1) {
