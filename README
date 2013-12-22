@@ -5,7 +5,7 @@ This software package aims to deliver a c library for estableshing a
 serial connectin to a arduino board.
 
 This package is under heavy devolopment and only tested for the
-Arduino Uno.  The current version is 1.8
+Arduino Uno.  The current version is 1.9
 
 Installation
 ------------
@@ -59,6 +59,12 @@ a newline character to the serial interface.
 
 Patch notes
 -----------
+
+version 1.9
+
+* fixed a but with head includes that prevented compiling
+
+* improved automated tests
 
 version 1.8
 

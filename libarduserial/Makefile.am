@@ -1,5 +1,5 @@
 lib_LTLIBRARIES = libarduserial.la
 libarduserial_la_SOURCES = arduserial.c
-libarduserial_la_LDFLAGS = -version-info 1:2:0
+libarduserial_la_LDFLAGS = -version-info 1:3:0
 include_HEADERS = arduserial.h
 
