@@ -5,7 +5,7 @@ This software package aims to deliver a c library for estableshing a
 serial connectin to a arduino board.
 
 This package is under heavy devolopment and only tested for the
-Arduino Uno.  The current version is 1.9
+Arduino Uno.  The current version is 2.0
 
 Installation
 ------------
@@ -57,8 +57,20 @@ something went wrong.
 Prints a string to the serial interface "file" and additionally prints
 a newline character to the serial interface.
 
+* int ser_autodetect(int baudRate);
+
+Auto detect a connected arduino connected to the computer. Pass the
+baud rate as an integer to the function.
+Returns -1 if an error occured.
+
 Patch notes
 -----------
+
+version 2.0
+
+* added a new functionality: ser_autodetect(int baudrate) that
+  automatically detects an arduino connected to the computer.
+  Just pass the baud rate.
 
 version 1.9
 
