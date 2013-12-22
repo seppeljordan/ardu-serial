@@ -47,6 +47,8 @@ testsuite/arduserial/testinit
 testsuite/arduserial/testinit.trs
 testsuite/arduserial/testreadln
 testsuite/arduserial/testreadln.trs
+testsuite/arduserial/testautodetect
+testsuite/arduserial/testautodetect.trs
 .project
 .autotools
 .cproject

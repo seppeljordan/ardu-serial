@@ -1,5 +1,14 @@
 2013-12-22  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
+	* testsuite/arduserial/testautodetect.c: implemented a test for the new
+	ser_autodetect function. 
+	* libarduserial/arduserial.h: added signature for the new ser_autodetect function. 
+	* libarduserial/arduserial.c: implemented a new functionality, ser_autodetect now 
+	automatically detects a arduino connected to the computer. error output now
+	appends a newline to the errormessage.
+
+2013-12-22  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
+
 	* testsuite/arduserial/testinit.c: includes the test header now 
 	* testsuite/arduserial/testreadln.c: added some debugging output,
 	renamed buffer variable for ser_read 

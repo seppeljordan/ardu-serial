@@ -7,11 +7,15 @@
 #include "arduserial.h"
 #include <string.h>
 #include <errno.h>
+#include <dirent.h>
+#include <regex.h>
 
 #define READTRYS 10
 #define READTRYTIME 100 * 1000
+#define SERIALPATH "/dev/serial/by-id/"
+#define SERIALDIR "/dev/serial/by-id"
 
-#define print_err_msg fprintf(stderr, strerror(errno))
+#define print_err_msg fprintf(stderr, "%s\n" ,strerror(errno))
 
 /* initialize a connection to the arduino */
 int ser_init(char *dev, int br) {
@@ -154,7 +158,7 @@ int ser_readln(int fd, char *b) {
 		r = ser_getc(fd, &c);
 
 		/* strip of the carriage return and replace it with termination character \0 */
-		if ((c == '\r')||(c == '\n')) {
+		if ((c == '\r') || (c == '\n')) {
 			*(b + i) = '\0';
 			return i;
 		} else if (r != -1) {
@@ -167,7 +171,7 @@ int ser_readln(int fd, char *b) {
 	}
 	/* There were read so many characters that MAXLINE was reached */
 	*(b + i + 1) = '\0';
-	return i+1;
+	return i + 1;
 }
 
 /* write a single character to the serial connection */
@@ -204,4 +208,53 @@ int ser_println(int f, char *b) {
 		return -1;
 	}
 	return 1;
+}
+
+int ser_autodetect(int baudRate) {
+
+	/* Pointer to the directory */
+	DIR *d;
+	/* File read from the directory */
+	struct dirent *file;
+
+	/* stores the regular expression for finding the arduino */
+	regex_t regex;
+	/* stores information about the matching of the regular expression */
+	int match = 0;
+
+	/* stores the file descriptor of the arduino to be accessed */
+	int fd = -1;
+
+	if (regcomp(&regex, "^usb-Arduino", 0) != 0) {
+		print_err_msg;
+		return -1;
+	}
+
+	d = opendir(SERIALDIR);
+	if (d) {
+		while ((file = readdir(d)) != NULL) {
+			if (regexec(&regex, file->d_name, 0, NULL, 0) == 0) {
+
+				/* Here goes the target of the softlink in /dev/serial/by-id/ */
+				char linkTarget[MAXLINE] = SERIALPATH;
+				/* Buffer for the path of the link */
+				char pathBuffer[MAXLINE] = SERIALPATH;
+				char linkRelPath[MAXLINE];
+				int targetLen=0;
+				strcat(pathBuffer,file->d_name); /* convert link path to absolute path */
+				if ((targetLen = readlink(pathBuffer,linkRelPath,MAXLINE)) == -1){
+					print_err_msg;
+					return -1;
+				}
+				linkRelPath[targetLen] = '\0';
+				strcat(linkTarget,linkRelPath);
+				printf("Try to open %s\n",linkTarget);
+				fd = ser_init(linkTarget, 9600);
+				break;
+			}
+		}
+
+		closedir(d);
+	}
+	return fd;
 }
