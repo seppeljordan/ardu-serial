@@ -153,7 +153,7 @@ int ser_readln(int fd, char *b) {
 	int i; /* count to detect whether MAXLINE is reached */
 	int r; /* return value of ser_getc */
 
-	for (i = 0; i < MAXLINE; i++) {
+	for (i = 0; i < ARDUSERIAL_MAXLINE; i++) {
 		/* Read next character from serial connection */
 		r = ser_getc(fd, &c);
 
@@ -236,13 +236,13 @@ int ser_autodetect(int baudRate) {
 			if (regexec(&regex, file->d_name, 0, NULL, 0) == 0) {
 
 				/* Here goes the target of the softlink in /dev/serial/by-id/ */
-				char linkTarget[MAXLINE] = SERIALPATH;
+				char linkTarget[ARDUSERIAL_MAXLINE] = SERIALPATH;
 				/* Buffer for the path of the link */
-				char pathBuffer[MAXLINE] = SERIALPATH;
-				char linkRelPath[MAXLINE];
+				char pathBuffer[ARDUSERIAL_MAXLINE] = SERIALPATH;
+				char linkRelPath[ARDUSERIAL_MAXLINE];
 				int targetLen=0;
 				strcat(pathBuffer,file->d_name); /* convert link path to absolute path */
-				if ((targetLen = readlink(pathBuffer,linkRelPath,MAXLINE)) == -1){
+				if ((targetLen = readlink(pathBuffer,linkRelPath,ARDUSERIAL_MAXLINE)) == -1){
 					print_err_msg;
 					return -1;
 				}

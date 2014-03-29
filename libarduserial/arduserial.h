@@ -6,7 +6,7 @@
 #ifndef __ARDU_SERIAL_H__
 #define __ARDU_SERIAL_H__
 
-#define MAXLINE 1000
+#define ARDUSERIAL_MAXLINE 1000
 
 int ser_init(char *device, int BaudRate);
 int ser_getc(int file, char *readCharacter);
