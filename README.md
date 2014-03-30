@@ -106,12 +106,12 @@ of the available arduinos connected to the computer.
 
 ## version 2.1
 
--   The ser<sub>autodetect</sub> procedure returns -2 when no serial connection
+-   The `ser_autodetect` procedure returns -2 when no serial connection
     is available
 
 ## version 2
 
--   added a new functionality: ser<sub>autodetect</sub>(int baudrate) that
+-   added a new functionality: `ser_autodetect(int baudrate)` that
     automatically detects an arduino connected to the computer.  Just
     pass the baud rate.
 
@@ -125,7 +125,7 @@ of the available arduinos connected to the computer.
 
 -   fixed a bug in ser<sub>readln</sub> function
 
--   added some tests (make check)
+-   added some tests (`make check`)
 
 ## version 1.7
 
@@ -165,4 +165,4 @@ of the available arduinos connected to the computer.
 
 ## version 1.1
 
--   fixed a bug in ser<sub>println</sub>
+-   fixed a bug in `ser_println`

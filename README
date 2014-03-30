@@ -58,21 +58,21 @@ Now you can follow the instructions from "INSTALL".
 * Patch notes
 
 ** version 2.1
-   * The ser_autodetect procedure returns -2 when no serial connection
+   * The =ser_autodetect= procedure returns -2 when no serial connection
      is available
 
 ** version 2
-   * added a new functionality: ser_autodetect(int baudrate) that
+   * added a new functionality: =ser_autodetect(int baudrate)= that
      automatically detects an arduino connected to the computer.  Just
      pass the baud rate.
-
+     
 ** version 1.9
    * fixed a but with head includes that prevented compiling
    * improved automated tests
 
 ** version 1.8
    * fixed a bug in ser_readln function
-   * added some tests (make check)
+   * added some tests (=make check=)
 
 ** version 1.7 
    * removed the files that were generated automatically from the
@@ -81,7 +81,7 @@ Now you can follow the instructions from "INSTALL".
      messages when the library does system calls that fail
 
 ** version 1.6
-   * fixed a bug in ser_writeln should work properly now
+   * fixed a bug in =ser_writeln= should work properly now
    * increased library version number to 1:0:0
 
 ** version 1.5
@@ -101,5 +101,5 @@ Now you can follow the instructions from "INSTALL".
    * added a manpage
 
 ** version 1.1
-   * fixed a bug in ser_println
+   * fixed a bug in =ser_println=
 
