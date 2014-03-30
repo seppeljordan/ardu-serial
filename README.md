@@ -7,8 +7,7 @@
 <li><a href="#sec-3">3. Implemented functions</a></li>
 <li><a href="#sec-4">4. Tasks to be done</a>
 <ul>
-<li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Improve markdown format</a></li>
-<li><a href="#sec-4-2">4.2. <span class="todo TODO">TODO</span> Implement procedure that returns a list of connected arduinos</a></li>
+<li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Implement procedure that returns a list of connected arduinos</a></li>
 </ul>
 </li>
 <li><a href="#sec-5">5. Patch notes</a>
@@ -58,41 +57,36 @@ Now you can follow the instructions from "INSTALL".
 
 # Implemented functions
 
--   **int ser<sub>init</sub>(char \*device, int BaudRate):** Initializes a
+-   **`int ser_init(char *device, int BaudRate)`:** Initializes a
     connection to the arduino at the given path "device" with the
     given baud rate "BaudRate".
 
--   **int ser<sub>flush</sub>(int file):** Flushes the serial interface "file".
+-   **`int ser_flush(int file)`:** Flushes the serial interface "file".
 
--   **int ser<sub>getc</sub>(int file, char \*readCharacter):** Reads one character
+-   **`int ser_getc(int file, char *readCharacter)`:** Reads one character
     from the serial interface.  Returns -1 if something went wrong
     and prints an error message to stderr.
 
--   **int ser<sub>readln</sub>(int file, char \*buffer):** Reads from the serial
+-   **`int ser_readln(int file, char *buffer)`:** Reads from the serial
     interface until a newline character is detected.  The newline
     character will be stript and replaced by a null character (\\0)
     to terminate the string.
 
--   **int ser<sub>putc</sub>(int file, char character):** Writes one character to
+-   **`int ser_putc(int file, char character)`:** Writes one character to
     the serial interface. Returns 0 if something went wrong and
     prints an error message to the standard output if something
     went wrong.
 
--   **int ser<sub>println</sub>(int file, char \*buffer):** Prints a string to the
+-   **`int ser_println(int file, char *buffer)`:** Prints a string to the
     serial interface "file" and additionally prints a newline
     character to the serial interface.
 
--   **int ser<sub>autodetect</sub>(int baudRate):** Auto detect a connected
+-   **`int ser_autodetect(int baudRate)`:** Auto detect a connected
     arduino connected to the computer.  Pass the baud rate as an
     integer to the function.  Returns -1 if an error occured and -2
     if no serial connection via usb is available.
 
 # Tasks to be done
-
-## TODO Improve markdown format
-
-The name of the procedures looks really bad in the markdown version
-of the README file.
 
 ## TODO Implement procedure that returns a list of connected arduinos
 
