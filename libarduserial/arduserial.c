@@ -253,11 +253,14 @@ int ser_autodetect(int baudRate)
 				char pathBuffer[ARDUSERIAL_MAXLINE] = SERIALPATH;
 				char linkRelPath[ARDUSERIAL_MAXLINE];
 				int targetLen=0;
-				strcat(pathBuffer,file->d_name); /* convert link path to absolute path */
-				if ((targetLen = readlink(pathBuffer,linkRelPath,ARDUSERIAL_MAXLINE)) == -1){
-					print_err_msg;
-					return -1;
-				}
+				/* convert link path to absolute path */
+				strcat(pathBuffer,file->d_name);
+				if ((targetLen = readlink(pathBuffer,linkRelPath,
+							  ARDUSERIAL_MAXLINE)) == -1)
+				  {
+				    print_err_msg;
+				    return -1;
+				  }
 				linkRelPath[targetLen] = '\0';
 				strcat(linkTarget,linkRelPath);
 				printf("Try to open %s\n",linkTarget);
