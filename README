@@ -46,6 +46,13 @@ Now you can follow the instructions from "INSTALL".
        integer to the function.  Returns -1 if an error occured and -2
        if no serial connection via usb is available.
 
+* Tasks to be done
+
+** TODO Improve markdown format
+   The name of the procedures looks really bad in the markdown version
+   of the README file.
+** TODO Implement procedure that returns a list of connected arduinos
+
 * Patch notes
 
 ** version 2.1

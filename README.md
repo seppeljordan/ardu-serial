@@ -5,19 +5,25 @@
 <li><a href="#sec-1">1. about</a></li>
 <li><a href="#sec-2">2. Installation</a></li>
 <li><a href="#sec-3">3. Implemented functions</a></li>
-<li><a href="#sec-4">4. Patch notes</a>
+<li><a href="#sec-4">4. Tasks to be done</a>
 <ul>
-<li><a href="#sec-4-1">4.1. version 2.1</a></li>
-<li><a href="#sec-4-2">4.2. version 2</a></li>
-<li><a href="#sec-4-3">4.3. version 1.9</a></li>
-<li><a href="#sec-4-4">4.4. version 1.8</a></li>
-<li><a href="#sec-4-5">4.5. version 1.7</a></li>
-<li><a href="#sec-4-6">4.6. version 1.6</a></li>
-<li><a href="#sec-4-7">4.7. version 1.5</a></li>
-<li><a href="#sec-4-8">4.8. version 1.4</a></li>
-<li><a href="#sec-4-9">4.9. version 1.3</a></li>
-<li><a href="#sec-4-10">4.10. version 1.2</a></li>
-<li><a href="#sec-4-11">4.11. version 1.1</a></li>
+<li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Improve markdown format</a></li>
+<li><a href="#sec-4-2">4.2. <span class="todo TODO">TODO</span> Implement procedure that returns a list of connected arduinos</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Patch notes</a>
+<ul>
+<li><a href="#sec-5-1">5.1. version 2.1</a></li>
+<li><a href="#sec-5-2">5.2. version 2</a></li>
+<li><a href="#sec-5-3">5.3. version 1.9</a></li>
+<li><a href="#sec-5-4">5.4. version 1.8</a></li>
+<li><a href="#sec-5-5">5.5. version 1.7</a></li>
+<li><a href="#sec-5-6">5.6. version 1.6</a></li>
+<li><a href="#sec-5-7">5.7. version 1.5</a></li>
+<li><a href="#sec-5-8">5.8. version 1.4</a></li>
+<li><a href="#sec-5-9">5.9. version 1.3</a></li>
+<li><a href="#sec-5-10">5.10. version 1.2</a></li>
+<li><a href="#sec-5-11">5.11. version 1.1</a></li>
 </ul>
 </li>
 </ul>
@@ -80,6 +86,15 @@ Now you can follow the instructions from "INSTALL".
     arduino connected to the computer.  Pass the baud rate as an
     integer to the function.  Returns -1 if an error occured and -2
     if no serial connection via usb is available.
+
+# Tasks to be done
+
+## TODO Improve markdown format
+
+The name of the procedures looks really bad in the markdown version
+of the README file.
+
+## TODO Implement procedure that returns a list of connected arduinos
 
 # Patch notes
 
