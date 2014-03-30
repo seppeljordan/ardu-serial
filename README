@@ -49,6 +49,11 @@ Now you can follow the instructions from "INSTALL".
 * Tasks to be done
 
 ** TODO Implement procedure that returns a list of connected arduinos
+   We want to have a procedure that returns a list of paths to the
+   available arduinos connected to the computer.
+*** TODO Include tools.c in compilation process of arduserial.c
+    Include implemeted stack in the procedure for generating the list
+    of the available arduinos connected to the computer.
 
 * Patch notes
 

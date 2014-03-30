@@ -7,7 +7,11 @@
 <li><a href="#sec-3">3. Implemented functions</a></li>
 <li><a href="#sec-4">4. Tasks to be done</a>
 <ul>
-<li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Implement procedure that returns a list of connected arduinos</a></li>
+<li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Implement procedure that returns a list of connected arduinos</a>
+<ul>
+<li><a href="#sec-4-1-1">4.1.1. <span class="todo TODO">TODO</span> Include tools.c in compilation process of arduserial.c</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-5">5. Patch notes</a>
@@ -89,6 +93,14 @@ Now you can follow the instructions from "INSTALL".
 # Tasks to be done
 
 ## TODO Implement procedure that returns a list of connected arduinos
+
+We want to have a procedure that returns a list of paths to the
+available arduinos connected to the computer.
+
+### TODO Include tools.c in compilation process of arduserial.c
+
+Include implemeted stack in the procedure for generating the list
+of the available arduinos connected to the computer.
 
 # Patch notes
 
