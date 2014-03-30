@@ -43,3 +43,5 @@ This manual is for the library arduserial, version 1.8
 {
 int ser_init(char *device, int baud);
 }
+
+@bye

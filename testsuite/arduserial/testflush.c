@@ -7,7 +7,7 @@ int main() {
 	int tty; /* This is the file descriptor of the serial port */
 	int reads; /* return value of ser_read */
 	int retval;/*store return values for evaluation of function calls*/
-	char buf[MAXLINE]; /* buffer for the returned string */
+	char buf[ARDUSERIAL_MAXLINE]; /* buffer for the returned string */
 	char *message = "Test"; /* message sent to the arduino */
 
 	/* try to initialize the connection to the arduino */

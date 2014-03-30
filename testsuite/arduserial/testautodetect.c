@@ -14,8 +14,12 @@ int main (){
 	int rv;
 
 	rv = ser_autodetect(9600);
-	if (rv == -1) {
-		exit(TESTFAIL);
+	switch (rv) {
+	case -1:
+	  exit(TESTFAIL); 
+	  break;
+	case -2:
+	  exit(TESTSKIP);
 	}
 	close(rv);
 	exit(TESTPASS);

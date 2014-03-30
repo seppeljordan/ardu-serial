@@ -210,7 +210,9 @@ int ser_println(int f, char *b) {
 	return 1;
 }
 
-int ser_autodetect(int baudRate) {
+int ser_autodetect(int baudRate) 
+/* Autodetect a arduino connected to the system via usb. */
+{
 
 	/* Pointer to the directory */
 	DIR *d;
@@ -219,16 +221,26 @@ int ser_autodetect(int baudRate) {
 
 	/* stores the regular expression for finding the arduino */
 	regex_t regex;
-	/* stores information about the matching of the regular expression */
+	/* stores information about the matching of the regular
+	   expression */
 	int match = 0;
 
 	/* stores the file descriptor of the arduino to be accessed */
 	int fd = -1;
 
+	/* compile the regular expression and exit if an error
+	   occurs */
 	if (regcomp(&regex, "^usb-Arduino", 0) != 0) {
 		print_err_msg;
 		return -1;
 	}
+
+	// check if the path to the serial connections exists and quit
+	// it does not.
+	if (! (file_exists(SERIALDIR))) {
+	  // return -2 for 'no connection is available'
+	  return -2;
+	};
 
 	d = opendir(SERIALDIR);
 	if (d) {
@@ -257,4 +269,16 @@ int ser_autodetect(int baudRate) {
 		closedir(d);
 	}
 	return fd;
+}
+
+int file_exists(const char *filename)
+/* Check if a file exists. */
+{
+  FILE *file;
+  if ( file = fopen(filename, "r"))
+    {
+      fclose(file);
+      return 1;
+    }
+  return 0;
 }

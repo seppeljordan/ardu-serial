@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv) {
 	int charactersAmount;
-	char readBuffer[MAXLINE];
+	char readBuffer[ARDUSERIAL_MAXLINE];
 	int fd;
 	printf("Start initialization process\n");
 	fd = ser_init(ARDUINOPATH, BAUDRATE);
