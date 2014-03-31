@@ -2,7 +2,7 @@ TESTS = testinit testflush testreadln testautodetect
 
 libarduserialpath = $(top_builddir)/libarduserial/libarduserial.la
 
-bin_PROGRAMS = testinit testreadln testflush testautodetect
+bin_PROGRAMS = $(TESTS)
 
 testinit_LDADD        = $(libarduserialpath)
 testreadln_LDADD      = $(libarduserialpath)

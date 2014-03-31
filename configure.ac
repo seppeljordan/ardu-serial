@@ -27,5 +27,6 @@ AC_CONFIG_FILES([Makefile
     libarduserial/Makefile 
     testsuite/Makefile 
     testsuite/arduserial/Makefile
+    testsuite/tools/Makefile
     info/Makefile])
 AC_OUTPUT

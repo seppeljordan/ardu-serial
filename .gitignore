@@ -53,3 +53,7 @@ testsuite/arduserial/testautodetect.trs
 .autotools
 .cproject
 .settings
+/libarduserial/libarduserialtools.la
+/libarduserial/arduserialtools.lo
+/testsuite/tools/teststack
+/testsuite/tools/teststack.trs

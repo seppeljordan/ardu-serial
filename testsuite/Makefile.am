@@ -1,1 +1,1 @@
-SUBDIRS = arduserial
+SUBDIRS = arduserial tools
