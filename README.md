@@ -9,7 +9,7 @@
 <ul>
 <li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Implement procedure that returns a list of connected arduinos</a>
 <ul>
-<li><a href="#sec-4-1-1">4.1.1. <span class="todo TODO">TODO</span> Include tools.c in compilation process of arduserial.c</a></li>
+<li><a href="#sec-4-1-1">4.1.1. <span class="done DONE">DONE</span> Include tools.c in compilation process of arduserial.c</a></li>
 </ul>
 </li>
 </ul>
@@ -97,7 +97,7 @@ Now you can follow the instructions from "INSTALL".
 We want to have a procedure that returns a list of paths to the
 available arduinos connected to the computer.
 
-### TODO Include tools.c in compilation process of arduserial.c
+### DONE Include tools.c in compilation process of arduserial.c
 
 Include implemeted stack in the procedure for generating the list
 of the available arduinos connected to the computer.
@@ -137,7 +137,7 @@ of the available arduinos connected to the computer.
 
 ## version 1.6
 
--   fixed a bug in ser<sub>writeln</sub> should work properly now
+-   fixed a bug in `ser_writeln` should work properly now
 
 -   increased library version number to 1:0:0
 
