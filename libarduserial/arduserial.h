@@ -20,6 +20,7 @@ typedef struct strStack
 stringStack *newStringStack(void);
 stringStack *push (stackPtr oldStack, char *text);
 stringStack *pop (stringStack *oldStack, char *returnValue);
+void killStack(stringStack *stack);
 void printError(char *errorMsg);
 int ser_init(char *device, int BaudRate);
 int ser_getc(int file, char *readCharacter);

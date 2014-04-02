@@ -17,6 +17,12 @@
 
 #define print_err_msg fprintf(stderr, "%s\n" ,strerror(errno))
 
+stringStack *stackAlloc(void);
+char *stringAlloc(int length);
+void freeStack(stringStack *stackElement);
+stringStack *allocElem(int sizeOfString);
+int file_exists(const char *filename);
+
 /* initialize a connection to the arduino */
 int ser_init(char *dev, int br) {
 	speed_t baud; /*connection rate */
@@ -268,67 +274,35 @@ stringStack *ser_listarduinos()
 }
 
 int ser_autodetect(int baudRate) 
-/* Autodetect a arduino connected to the system via usb. */
+/* Autodetect a arduino connected to the system via usb.  We will use
+   the ser_listarduinos() procedure to detect a possible connection.
+   We check if there is any serial connection before trying to connect
+   and return -2 if we did not find any connections.  We will connect
+   to the arduino that is on top of the stack.  We have to kill the
+   stack in end. */
 {
+  stringStack *s;
+  int fd;
+  
+  // check if the path to the serial connections exists and quit it
+  // does not.
+  if (! (file_exists(SERIALDIR))) {
+    // return -2 for 'no connection is available'
+    return -2;
+  };
+  
+  // get a list with all arduinos connected
+  s = ser_listarduinos();
+  if ( s == NULL )
+    return(-1);
+  
+  // connect to the first arduino on the stack
+  fd = ser_init(s->text, baudRate);
 
-	/* Pointer to the directory */
-	DIR *d;
-	/* File read from the directory */
-	struct dirent *file;
-
-	/* stores the regular expression for finding the arduino */
-	regex_t regex;
-	/* stores information about the matching of the regular
-	   expression */
-	int match = 0;
-
-	/* stores the file descriptor of the arduino to be accessed */
-	int fd = -1;
-
-	/* compile the regular expression and exit if an error
-	   occurs */
-	if (regcomp(&regex, "^usb-Arduino", 0) != 0) {
-		print_err_msg;
-		return -1;
-	}
-
-	// check if the path to the serial connections exists and quit
-	// it does not.
-	if (! (file_exists(SERIALDIR))) {
-	  // return -2 for 'no connection is available'
-	  return -2;
-	};
-
-	d = opendir(SERIALDIR);
-	if (d) {
-		while ((file = readdir(d)) != NULL) {
-			if (regexec(&regex, file->d_name, 0, NULL, 0) == 0) {
-
-				/* Here goes the target of the softlink in /dev/serial/by-id/ */
-				char linkTarget[ARDUSERIAL_MAXLINE] = SERIALPATH;
-				/* Buffer for the path of the link */
-				char pathBuffer[ARDUSERIAL_MAXLINE] = SERIALPATH;
-				char linkRelPath[ARDUSERIAL_MAXLINE];
-				int targetLen=0;
-				/* convert link path to absolute path */
-				strcat(pathBuffer,file->d_name);
-				if ((targetLen = readlink(pathBuffer,linkRelPath,
-							  ARDUSERIAL_MAXLINE)) == -1)
-				  {
-				    print_err_msg;
-				    return -1;
-				  }
-				linkRelPath[targetLen] = '\0';
-				strcat(linkTarget,linkRelPath);
-				printf("Try to open %s\n",linkTarget);
-				fd = ser_init(linkTarget, 9600);
-				break;
-			}
-		}
-
-		closedir(d);
-	}
-	return fd;
+  // kill the stack
+  killStack(s);
+  
+  return fd;
 }
 
 int file_exists(const char *filename)
@@ -345,11 +319,6 @@ int file_exists(const char *filename)
 
 #define ARDUSERIAL_MAXSTACKSIZE 20
 
-
-stringStack *stackAlloc(void);
-char *stringAlloc(int length);
-void freeStack(stringStack *stackElement);
-stringStack *allocElem(int sizeOfString);
 
 stringStack *newStringStack(void)
 /* Create a new empty stack */
@@ -414,6 +383,18 @@ void freeStack(stringStack *s)
 {
   free(s->text);
   free(s);
+}
+
+void killStack(stringStack *s)
+/* We want to free all allocated memory used by the stack passed as an
+   argument.  We cannot reference s after calling it killStack on
+   s.  */
+{
+  while ( s != NULL ) {
+    stringStack *p = s;
+    s = p->next;
+    free(p);
+  }
 }
 
 char *stringAlloc(int l)
