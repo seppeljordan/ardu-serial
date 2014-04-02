@@ -1,6 +1,6 @@
 TESTS = teststack
 
-libtoolspath = $(top_builddir)/libarduserial/libarduserialtools.la
+libtoolspath = $(top_builddir)/libarduserial/libarduserial.la
 
 bin_PROGRAMS = $(TESTS)
 

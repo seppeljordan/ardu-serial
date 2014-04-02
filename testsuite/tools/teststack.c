@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../../libarduserial/arduserialtools.h"
+#include "../../libarduserial/arduserial.h"
 #include "../testdef.h"
 
 int main(int argc, char **argv)

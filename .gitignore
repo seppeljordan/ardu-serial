@@ -57,3 +57,5 @@ testsuite/arduserial/testautodetect.trs
 /libarduserial/arduserialtools.lo
 /testsuite/tools/teststack
 /testsuite/tools/teststack.trs
+/testsuite/arduserial/testlistarduinos.trs
+/testsuite/arduserial/testlistarduinos
