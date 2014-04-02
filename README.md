@@ -7,11 +7,12 @@
 <li><a href="#sec-3">3. Implemented functions</a></li>
 <li><a href="#sec-4">4. Tasks to be done</a>
 <ul>
-<li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Implement procedure that returns a list of connected arduinos</a>
+<li><a href="#sec-4-1">4.1. <span class="done DONE">DONE</span> Implement procedure that returns a list of connected arduinos</a>
 <ul>
 <li><a href="#sec-4-1-1">4.1.1. <span class="done DONE">DONE</span> Include tools.c in compilation process of arduserial.c</a></li>
 </ul>
 </li>
+<li><a href="#sec-4-2">4.2. <span class="todo TODO">TODO</span> Improve the path that is returned by the <code>ser_listarduinos</code> procedure.</a></li>
 </ul>
 </li>
 <li><a href="#sec-5">5. Patch notes</a>
@@ -92,7 +93,7 @@ Now you can follow the instructions from "INSTALL".
 
 # Tasks to be done
 
-## TODO Implement procedure that returns a list of connected arduinos
+## DONE Implement procedure that returns a list of connected arduinos
 
 We want to have a procedure that returns a list of paths to the
 available arduinos connected to the computer.
@@ -102,12 +103,20 @@ available arduinos connected to the computer.
 Include implemeted stack in the procedure for generating the list
 of the available arduinos connected to the computer.
 
+## TODO Improve the path that is returned by the `ser_listarduinos` procedure.
+
+The path that is returned by the `ser_listarduinos` procedure
+contains a lot of `..`.  We need to get rid of this mess.
+
 # Patch notes
 
 ## version 2.1
 
 -   The `ser_autodetect` procedure returns -2 when no serial connection
     is available
+
+-   Implemented new functionality: `ser_listarduinos()` now returns a
+    list of the available connections to arduinos connected via usb.
 
 ## version 2
 

@@ -48,18 +48,22 @@ Now you can follow the instructions from "INSTALL".
 
 * Tasks to be done
 
-** TODO Implement procedure that returns a list of connected arduinos
+** DONE Implement procedure that returns a list of connected arduinos
    We want to have a procedure that returns a list of paths to the
    available arduinos connected to the computer.
 *** DONE Include tools.c in compilation process of arduserial.c
     Include implemeted stack in the procedure for generating the list
     of the available arduinos connected to the computer.
-
+** TODO Improve the path that is returned by the =ser_listarduinos= procedure.
+   The path that is returned by the =ser_listarduinos= procedure
+   contains a lot of =..=.  We need to get rid of this mess.
 * Patch notes
 
 ** version 2.1
    * The =ser_autodetect= procedure returns -2 when no serial connection
      is available
+   * Implemented new functionality: =ser_listarduinos()= now returns a
+     list of the available connections to arduinos connected via usb.
 
 ** version 2
    * added a new functionality: =ser_autodetect(int baudrate)= that
