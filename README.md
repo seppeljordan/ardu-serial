@@ -39,7 +39,7 @@ This software package aims to deliver a c library for estableshing a
 serial connectin to a arduino board.
 
 This package is under heavy devolopment and only tested for the
-Arduino Uno.  The current version is 2.0
+Arduino Uno.  The current version is 2.1
 
 # Installation
 
@@ -91,6 +91,27 @@ Now you can follow the instructions from "INSTALL".
     integer to the function.  Returns -1 if an error occured and -2
     if no serial connection via usb is available.
 
+-   **`stringStack *ser_listarduinos()`:** Detect all arduino boards
+    connected to the system (via USB).  The list of possible
+    arduinos is passed as a `stringStack`.
+
+-   **`stringStack *newStringStack(void)`:** For initializing a new
+           `stringStack`.
+
+-   **`stringStack *push (stackPtr oldStack, char *text)`:** Push a new
+    element onto the stack.
+
+-   **`stringStack *pop (stringStack *oldStack, char *returnValue)`:** Pop
+    the top element from the stack.  `returnValue` will yield the
+    string that was on top of the stack.
+
+-   **`void killStack(stringStack *stack)`:** Free the memory that is
+    occupied by the stack.  Don't reference the stack after killing
+    it.
+
+-   **`void printError(char *errorMsg)`:** Print an errormessage to
+    sterr.
+
 # Tasks to be done
 
 ## DONE Implement procedure that returns a list of connected arduinos
@@ -117,6 +138,9 @@ contains a lot of `..`.  We need to get rid of this mess.
 
 -   Implemented new functionality: `ser_listarduinos()` now returns a
     list of the available connections to arduinos connected via usb.
+
+-   Implement a data type `stringStack` for passing the list of
+    connections to the program
 
 ## version 2
 
