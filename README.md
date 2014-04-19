@@ -12,22 +12,23 @@
 <li><a href="#sec-4-1-1">4.1.1. <span class="done DONE">DONE</span> Include tools.c in compilation process of arduserial.c</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-2">4.2. <span class="todo TODO">TODO</span> Improve the path that is returned by the <code>ser_listarduinos</code> procedure.</a></li>
+<li><a href="#sec-4-2">4.2. <span class="done DONE">DONE</span> Improve the path that is returned by the <code>ser_listarduinos</code> procedure.</a></li>
 </ul>
 </li>
 <li><a href="#sec-5">5. Patch notes</a>
 <ul>
-<li><a href="#sec-5-1">5.1. version 2.1</a></li>
-<li><a href="#sec-5-2">5.2. version 2</a></li>
-<li><a href="#sec-5-3">5.3. version 1.9</a></li>
-<li><a href="#sec-5-4">5.4. version 1.8</a></li>
-<li><a href="#sec-5-5">5.5. version 1.7</a></li>
-<li><a href="#sec-5-6">5.6. version 1.6</a></li>
-<li><a href="#sec-5-7">5.7. version 1.5</a></li>
-<li><a href="#sec-5-8">5.8. version 1.4</a></li>
-<li><a href="#sec-5-9">5.9. version 1.3</a></li>
-<li><a href="#sec-5-10">5.10. version 1.2</a></li>
-<li><a href="#sec-5-11">5.11. version 1.1</a></li>
+<li><a href="#sec-5-1">5.1. version 2.2</a></li>
+<li><a href="#sec-5-2">5.2. version 2.1</a></li>
+<li><a href="#sec-5-3">5.3. version 2</a></li>
+<li><a href="#sec-5-4">5.4. version 1.9</a></li>
+<li><a href="#sec-5-5">5.5. version 1.8</a></li>
+<li><a href="#sec-5-6">5.6. version 1.7</a></li>
+<li><a href="#sec-5-7">5.7. version 1.6</a></li>
+<li><a href="#sec-5-8">5.8. version 1.5</a></li>
+<li><a href="#sec-5-9">5.9. version 1.4</a></li>
+<li><a href="#sec-5-10">5.10. version 1.3</a></li>
+<li><a href="#sec-5-11">5.11. version 1.2</a></li>
+<li><a href="#sec-5-12">5.12. version 1.1</a></li>
 </ul>
 </li>
 </ul>
@@ -124,12 +125,17 @@ available arduinos connected to the computer.
 Include implemeted stack in the procedure for generating the list
 of the available arduinos connected to the computer.
 
-## TODO Improve the path that is returned by the `ser_listarduinos` procedure.
+## DONE Improve the path that is returned by the `ser_listarduinos` procedure.
 
 The path that is returned by the `ser_listarduinos` procedure
 contains a lot of `..`.  We need to get rid of this mess.
 
 # Patch notes
+
+## version 2.2
+
+-   The `ser_listarduinos` procedure now returns minimal paths to the
+    detected arduinos without ".." or "." in the path.
 
 ## version 2.1
 

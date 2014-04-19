@@ -70,10 +70,14 @@ Now you can follow the instructions from "INSTALL".
 *** DONE Include tools.c in compilation process of arduserial.c
     Include implemeted stack in the procedure for generating the list
     of the available arduinos connected to the computer.
-** TODO Improve the path that is returned by the =ser_listarduinos= procedure.
+** DONE Improve the path that is returned by the =ser_listarduinos= procedure.
    The path that is returned by the =ser_listarduinos= procedure
    contains a lot of =..=.  We need to get rid of this mess.
 * Patch notes
+
+** version 2.2
+   * The =ser_listarduinos= procedure now returns minimal paths to the
+     detected arduinos without ".." or "." in the path.
 
 ** version 2.1
    * The =ser_autodetect= procedure returns -2 when no serial connection
