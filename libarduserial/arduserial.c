@@ -14,6 +14,7 @@
 #define READTRYTIME 100 * 1000
 #define SERIALPATH "/dev/serial/by-id/"
 #define SERIALDIR "/dev/serial/by-id"
+#define MAXPATHLENGTH 1024
 
 #define print_err_msg fprintf(stderr, "%s\n" ,strerror(errno))
 
@@ -21,7 +22,9 @@ stringStack *stackAlloc(void);
 char *stringAlloc(int length);
 void freeStack(stringStack *stackElement);
 stringStack *allocElem(int sizeOfString);
+stringStack *unstack(stringStack *stack);
 int file_exists(const char *filename);
+char *optFilename(char *filename);
 
 /* initialize a connection to the arduino */
 int ser_init(char *dev, int br) {
@@ -250,6 +253,7 @@ stringStack *ser_listarduinos()
 	
 	/* Here goes the target of the softlink in /dev/serial/by-id/ */
 	char linkTarget[ARDUSERIAL_MAXLINE] = SERIALPATH;
+	char *linkTargetOpt = NULL;
 	/* Buffer for the path of the link */
 	char pathBuffer[ARDUSERIAL_MAXLINE] = SERIALPATH;
 	char linkRelPath[ARDUSERIAL_MAXLINE];
@@ -264,7 +268,11 @@ stringStack *ser_listarduinos()
 	  };
 	linkRelPath[targetLen] = '\0';
 	strcat(linkTarget,linkRelPath);
-	stack = push(stack, linkTarget);
+	linkTargetOpt = optFilename(linkTarget);
+	stack = push(stack, linkTargetOpt);
+	/* we must not forget to free the memory allocated by
+	   optFilename */
+	free(linkTargetOpt);
       }
     }
     
@@ -417,9 +425,56 @@ stringStack *allocElem(int size)
   return newElem;
 }
 
+stringStack *unstack(stringStack *s)
+{
+  // newStack points to the new head
+  stringStack *newHead = s->next;
+  // free the memory of the old stack element
+  freeStack(s);
+  // return a pointer to the new head
+  return newHead; 
+}
+
 void printError(char *e)
 /* We want to print an error message to stderr.  We assume that the
    error msg is NULL terminated. */
 {
   fprintf(stderr, "ERROR: %s\n", e);
+}
+
+char *optFilename(char *oldPath)
+/* We want to optimize the path refering to a file in the local file
+   system.  This routine is only working on POSIX systems.  We split
+   the path into tokens and push the tokens to a stack.  When we find
+   a '..' token then we unstack the last element instead of pushing
+   '..' to the stack.  We must not forget to free the memory where the
+   new path is stored because it is dynamically allocated. */
+{
+  stringStack *pathStack = newStringStack();
+  char pathElement[MAXPATHLENGTH];
+  char *token;
+  char *saveptr;
+  char *returnValue = stringAlloc(strlen(oldPath));
+  int originalLength = strlen(oldPath);
+  // tokenize the path
+  for (; ; oldPath = NULL) {
+    token = strtok_r(oldPath, "/", &saveptr);
+    if (token == NULL) break;
+    if ( strcmp("..", token) == 0 ) {
+      pathStack = unstack(pathStack);
+    } else if (strcmp(".", token) == 0 ) {
+	continue;
+    } else {
+      pathStack = push(pathStack, token);
+    }
+  }
+  returnValue[0] = '\0';
+  while (pathStack != NULL) {
+    char *helper = stringAlloc(originalLength);
+    pathStack = pop(pathStack, pathElement);
+    sprintf(helper, "/%s%s\0", pathElement, returnValue);
+    strcpy(returnValue, helper);
+    free(helper);
+  }
+  return returnValue;
 }
