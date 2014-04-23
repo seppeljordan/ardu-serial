@@ -13,6 +13,7 @@
 </ul>
 </li>
 <li><a href="#sec-4-2">4.2. <span class="done DONE">DONE</span> Improve the path that is returned by the <code>ser_listarduinos</code> procedure.</a></li>
+<li><a href="#sec-4-3">4.3. <span class="todo TODO">TODO</span> Reimplement the autodetection procedure with libusb</a></li>
 </ul>
 </li>
 <li><a href="#sec-5">5. Patch notes</a>
@@ -95,8 +96,8 @@ Now you can follow the instructions from "INSTALL".
 -   **`stringStack *ser_listarduinos()`:** Detect all arduino boards
     connected to the system (via USB).  The list of possible
     arduinos is passed as a `stringStack`.  All paths that are
-    returned by ser<sub>listarduinos</sub> are minimal paths (no *..* or
-    *.*).
+    returned by ser<sub>listarduinos</sub> are minimal paths (no `/../` or
+    `/./`).
 
 -   **`stringStack *newStringStack(void)`:** For initializing a new
            `stringStack`.
@@ -132,12 +133,20 @@ of the available arduinos connected to the computer.
 The path that is returned by the `ser_listarduinos` procedure
 contains a lot of `..`.  We need to get rid of this mess.
 
+## TODO Reimplement the autodetection procedure with libusb
+
+We should use libusb to detect the arduino.  That would make a lot
+more portable code.  The vendor id of the Arduino is '2341'.
+Here is a listing of the product ids that are known to the software:
+
+-   **0043:** Uno R3
+
 # Patch notes
 
 ## version 2.2
 
 -   The `ser_listarduinos` procedure now returns minimal paths to the
-    detected arduinos without ".." or "." in the path.
+    detected arduinos without "`/../`" or "`/./`" in the path.
 
 ## version 2.1
 

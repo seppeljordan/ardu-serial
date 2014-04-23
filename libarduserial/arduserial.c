@@ -193,14 +193,15 @@ int ser_putc(int f, char c) {
 		return r;
 }
 
-/* Write a string of characters to the serial connection and terminate with a
- * newline character.
+/* Write a string of characters to the serial connection and terminate
+ * with a newline character.
  * 
- * This function prints the string gives as the second parameter to the serial
- * connection given with the first parameter.
+ * This function prints the string gives as the second parameter to
+ * the serial connection given with the first parameter.
  * 
- * Return: ser_println() will return 1 if the data has been writen succesfully 
- * to the serial connection and will return -1 if something went wrong. */
+ * Return: ser_println() will return 1 if the data has been writen
+ * succesfully to the serial connection and will return -1 if
+ * something went wrong. */
 
 int ser_println(int f, char *b) {
 	int l = strlen(b);
