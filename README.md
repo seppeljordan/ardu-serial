@@ -36,11 +36,11 @@
 </div>
 # about
 
-This software package aims to deliver a c library for estableshing a
+This software package aims to deliver a C library for estableshing a
 serial connectin to a arduino board.
 
 This package is under heavy devolopment and only tested for the
-Arduino Uno.  The current version is 2.1
+Arduino Uno.  The current version is 2.2
 
 # Installation
 
@@ -94,7 +94,9 @@ Now you can follow the instructions from "INSTALL".
 
 -   **`stringStack *ser_listarduinos()`:** Detect all arduino boards
     connected to the system (via USB).  The list of possible
-    arduinos is passed as a `stringStack`.
+    arduinos is passed as a `stringStack`.  All paths that are
+    returned by ser<sub>listarduinos</sub> are minimal paths (no *..* or
+    *.*).
 
 -   **`stringStack *newStringStack(void)`:** For initializing a new
            `stringStack`.
