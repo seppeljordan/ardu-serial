@@ -1,4 +1,4 @@
-TESTS = testinit testflush testreadln testautodetect testlistarduinos
+TESTS = testinit testflush testreadln testautodetect testlistarduinos testpathopt
 
 libarduserialpath = $(top_builddir)/libarduserial/libarduserial.la
 
@@ -9,5 +9,6 @@ testreadln_LDADD      = $(libarduserialpath)
 testflush_LDADD       = $(libarduserialpath)
 testautodetect_LDADD  = $(libarduserialpath)
 testlistarduinos_LDADD = $(libarduserialpath)
+testpathopt_LDADD = $(libarduserialpath)
 
-noinst_PROGRAMS = testinit testreadln testflush testautodetect testlistarduinos
+noinst_PROGRAMS = $(TESTS)

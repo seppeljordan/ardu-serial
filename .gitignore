@@ -60,3 +60,5 @@ testsuite/arduserial/testautodetect.trs
 /testsuite/arduserial/testlistarduinos.trs
 /testsuite/arduserial/testlistarduinos
 /#README#
+/testsuite/arduserial/testpathopt
+/testsuite/arduserial/testpathopt.trs

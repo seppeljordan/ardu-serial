@@ -406,11 +406,16 @@ void killStack(stringStack *s)
 }
 
 char *stringAlloc(int l)
+/* Allocate memory for a string of length l including the space for a
+   terminating \0 character. */
 {
   return (char *) malloc( sizeof(char) * (l + 1));
 }
 
-stringStack *stackAlloc(){
+stringStack *stackAlloc()
+/* Allocate memory for an element of a stack without allocating memory
+   for the string. */
+{
   return (stringStack *) malloc(sizeof (stringStack));
 }
 
@@ -426,13 +431,20 @@ stringStack *allocElem(int size)
 }
 
 stringStack *unstack(stringStack *s)
+/* Free the memory of the top element of the stack.  Return the adress
+   of the new top element of the stack.  Do nothing if s points to
+   NULL. */
 {
-  // newStack points to the new head
-  stringStack *newHead = s->next;
-  // free the memory of the old stack element
-  freeStack(s);
-  // return a pointer to the new head
-  return newHead; 
+  /* check if s points to null */
+  if (s == NULL) {
+    return s;
+  } else {
+    /* point newHead to next element on the stack, free the memory of
+     the old stack head, return a pointer to the new head */
+    stringStack *newHead = s->next;
+    freeStack(s);
+    return newHead; 
+  }
 }
 
 void printError(char *e)
@@ -446,9 +458,10 @@ char *optFilename(char *oldPath)
 /* We want to optimize the path refering to a file in the local file
    system.  This routine is only working on POSIX systems.  We split
    the path into tokens and push the tokens to a stack.  When we find
-   a '..' token then we unstack the last element instead of pushing
+   a '..'  token then we unstack the last element instead of pushing
    '..' to the stack.  We must not forget to free the memory where the
-   new path is stored because it is dynamically allocated. */
+   new path is stored because it is dynamically allocated.  We expect
+   the path passed to this routine to be null terminated. */
 {
   stringStack *pathStack = newStringStack();
   char pathElement[MAXPATHLENGTH];

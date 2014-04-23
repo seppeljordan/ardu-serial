@@ -10,6 +10,7 @@
 
 #define TESTFAIL 1
 #define TESTSKIP 77
+#define TESTERROR 99
 #define TESTPASS 0
 #define ARDUINOPATH "/dev/ttyACM0"
 #define BAUDRATE 9600
