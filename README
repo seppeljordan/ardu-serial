@@ -1,3 +1,5 @@
+ARDUSERIAL README -*- mode: org -*-
+
 * about
 
 This software package aims to deliver a C library for estableshing a
@@ -63,7 +65,6 @@ Now you can follow the instructions from "INSTALL".
   * =void printError(char *errorMsg)= :: Print an errormessage to
        sterr.
 
-
 * Tasks to be done
 
 ** DONE Implement procedure that returns a list of connected arduinos
@@ -75,6 +76,27 @@ Now you can follow the instructions from "INSTALL".
 ** DONE Improve the path that is returned by the =ser_listarduinos= procedure.
    The path that is returned by the =ser_listarduinos= procedure
    contains a lot of =..=.  We need to get rid of this mess.
+** TODO Implement detection of the modell of the arduino
+   We can detect the specific arduino by its product id.  We want to
+   implement a procedure that enables the user to detect the arduino
+   in use.
+
+   List of known product ids.
+   * 0043 :: Uno R3
+
+** TODO Develop a testing library
+   We want to have a testing library that provides useful testing
+   utility.  Currently we have a headerfile =testdef.h= that holds
+   constants for exit codes.
+
+*** TODO Implement a procdure to test if a file exists by giving its path name
+    We would need a such a procedure to test autodetection procedures.
+
+*** TODO Implement a procedure to evaluate tests
+    This procedure should exit the test driver when the test fails.
+    Otherwise it will proceed with the testing program. It also
+    returns the error code of the failing test if a test fails.
+
 * Patch notes
 
 ** version 2.2
