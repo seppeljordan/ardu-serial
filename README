@@ -75,10 +75,12 @@ Now you can follow the instructions from "INSTALL".
 ** DONE Improve the path that is returned by the =ser_listarduinos= procedure.
    The path that is returned by the =ser_listarduinos= procedure
    contains a lot of =..=.  We need to get rid of this mess.
-** TODO Reimplement the autodetection procedure with libusb
-   We should use libusb to detect the arduino.  That would make a lot
-   more portable code.  The vendor id of the Arduino is '2341'.
-   Here is a listing of the product ids that are known to the software:
+** TODO Implement detection of the modell of the arduino
+   We can detect the specific arduino by its product id.  We want to
+   implement a procedure that enables the user to detect the arduino
+   in use.
+
+   List of known product ids.
    * 0043 :: Uno R3
 * Patch notes
 

@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include "../testdef.h"
 
+void evaltest(int (* test)());
+
 int main() {
 	int tty; /* This is the file descriptor of the serial port */
 	int reads; /* return value of ser_read */
@@ -11,7 +13,7 @@ int main() {
 	char *message = "Test"; /* message sent to the arduino */
 
 	/* try to initialize the connection to the arduino */
-	tty = ser_init(ARDUINOPATH, BAUDRATE);
+	tty = ser_autodetect(BAUDRATE);
 	/* Skip the test if the arduino was not found */
 	if (tty == -1)
 		exit(TESTSKIP);
@@ -26,14 +28,23 @@ int main() {
 		printf("Print \"%s\" to arduino failed. Aborting test.", message);
 		exit(TESTFAIL);
 	}
-	printf("\"%s\" printed succesfully to the arduino.", message);
+	printf("\"%s\" printed succesfully to the arduino.\n", message);
 
 		/* read the string from the arduino */
 		reads = ser_readln(tty, buf);
 	if (strcmp(buf, "Test program for testing libarduserial") == 0) {
-		printf("Test failed, flush did not work correctly");
+		printf("Test failed, flush did not work correctly./n");
 		exit(TESTFAIL);
 	}
-
+	printf("Test pass\n");
 	return TESTPASS;
+}
+
+void evaltest(int (* test)())
+/* Evaluate a test and exit if the test does not pass. */
+{
+  int result = (* test)();
+  if (result != TESTPASS) {
+    exit(result);
+  }
 }

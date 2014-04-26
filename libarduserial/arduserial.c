@@ -15,6 +15,7 @@
 #define SERIALPATH "/dev/serial/by-id/"
 #define SERIALDIR "/dev/serial/by-id"
 #define MAXPATHLENGTH 1024
+#define ARDUSERIAL_MAXSTACKSIZE 20
 
 #define print_err_msg fprintf(stderr, "%s\n" ,strerror(errno))
 
@@ -236,8 +237,9 @@ stringStack *ser_listarduinos()
   // stack to store the paths to the arduinos
   stringStack *stack;
 
-  // compile regular expression for detection pattern
-  regcomp(&regexArduino, "^usb-Arduino", 0);
+  /* compile regular expression for detection pattern.  We can rely on
+     arduino having always the same vendor id. */
+  regcomp(&regexArduino, "^usb-Arduino__www\\.arduino\\.cc__", 0);
   
   // check if the path to the serial connections exists and quit if it
   // doesn't
@@ -326,7 +328,6 @@ int file_exists(const char *filename)
   return 0;
 }
 
-#define ARDUSERIAL_MAXSTACKSIZE 20
 
 
 stringStack *newStringStack(void)
