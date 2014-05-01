@@ -9,7 +9,6 @@ This package is under heavy devolopment and only tested for the
 Arduino Uno.  The current version is 2.2
 
 * Installation
-
   Read "INSTALL" for instructions on the installation process.
 
   If you downloaded the software directly from the github repo then you
