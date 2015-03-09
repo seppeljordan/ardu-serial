@@ -1,17 +1,17 @@
 2013-12-22  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
 	* testsuite/arduserial/testautodetect.c: implemented a test for the new
-	ser_autodetect function. 
-	* libarduserial/arduserial.h: added signature for the new ser_autodetect function. 
-	* libarduserial/arduserial.c: implemented a new functionality, ser_autodetect now 
+	ser_autodetect function.
+	* libarduserial/arduserial.h: added signature for the new ser_autodetect function.
+	* libarduserial/arduserial.c: implemented a new functionality, ser_autodetect now
 	automatically detects a arduino connected to the computer. error output now
 	appends a newline to the errormessage.
 
 2013-12-22  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
-	* testsuite/arduserial/testinit.c: includes the test header now 
+	* testsuite/arduserial/testinit.c: includes the test header now
 	* testsuite/arduserial/testreadln.c: added some debugging output,
-	renamed buffer variable for ser_read 
+	renamed buffer variable for ser_read
 	* testsuite/arduserial/testflush.c: fixed a bug so that the test works correctly
 
 2013-12-22  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
@@ -19,17 +19,17 @@
 	* testsuite/arduserial/testreadln.c (main): corrected some typos at the
 	debugging output
 	* testsuite/arduserial/testflush.c (main): reimplemented test so that is
-	tests ser_flush correctly 
+	tests ser_flush correctly
 
 2013-12-21  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
 	* info/arduserial.texi: First skeleton of a texi file created.
-	The files is not included into Makefile.am yet 
-	
+	The files is not included into Makefile.am yet
+
 2013-12-21  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
 
-	* testsuite/arduserial/testreadln.c, testsuite/arduserial/testinit.c, 
-	testsuite/arduserial/testflush.c, libarduserial/arduserial.c: fixed a 
+	* testsuite/arduserial/testreadln.c, testsuite/arduserial/testinit.c,
+	testsuite/arduserial/testflush.c, libarduserial/arduserial.c: fixed a
 	bug with the header includes
 
 2013-12-20  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
@@ -43,7 +43,7 @@
 	the message the arduino sends.
 
 2013-12-19  Sebastian Jordan  <sebastian.jordan.mail@googlemail.com>
-	
+
 	* testsuite/testdef.h: created a header file to include for testing, like
 	return codes and the path to the arduino connected.
 	* testsuite/arduserial/Makefile.am: should work correctly now and build
@@ -58,7 +58,7 @@
 	* .gitignore: added the executables of the tests to .gitignore
 	* testsuite/arduserial/testreadln.c (main): implemented a test for
 	readln but it is not working (memory access violation)
-	* testsuite/arduserial/testinit.c: implemented a test for ser_init 
+	* testsuite/arduserial/testinit.c: implemented a test for ser_init
 	function that makes tests for an error when accessing a non existant
 	serial connection
 	* testsuite/arduserial/testflush.c (main): implemented a test for

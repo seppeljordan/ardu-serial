@@ -346,6 +346,8 @@ stringStack *push(stackPtr oldStack, char *text)
      wrong.*/
   // is there already something on the stack?
   int isFirst = (oldStack == NULL);
+  // the length of the text to push onto the stack
+  int textlen = strlen(text);
   if ( !isFirst) {
     // check there is already an element on the stack
     if (oldStack->size == ARDUSERIAL_MAXSTACKSIZE)
@@ -356,9 +358,9 @@ stringStack *push(stackPtr oldStack, char *text)
       };
   };
   // create a new stack element with space for the string allocated
-  stringStack *newElem = allocElem(strlen(text));
+  stringStack *newElem = allocElem(textlen);
   // copy the string to the new element
-  strcpy(newElem->text,text);
+  strncpy(newElem->text,text,textlen+1);
   // set next element to old head of the stack
   newElem->next = oldStack;
   // update the size of the stack
@@ -371,16 +373,23 @@ stringStack *push(stackPtr oldStack, char *text)
   return newElem;
 }
 
-stringStack *pop(stringStack *oldStack, char *returnValue)
+stringStack *pop(stringStack *oldStack, char *returnValue, int buffersize)
 /* We want to take an element from the stack.  We copy the string
    value of the elements text onto a helper variable and then free the
    old stack element.  We also have to return the new head of the
-   stack. */
+   stack.  We need the buffer size of the 'returnValue' to prevent
+   data leaks or undefined behavior.  We return NULL if the buffer
+   size is to small. */
 { 
   // newStack points to the new head
   stringStack *newHead = oldStack->next;
+  int textlen = strlen(oldStack->text);
+  // check if the buffer is large enougth
+  if (textlen >= buffersize) {
+    return oldStack;
+  }
   // copy string to return variable
-  strcpy(returnValue,oldStack->text);
+  strncpy(returnValue,oldStack->text, buffersize);
   // free the memory of the old stack element
   freeStack(oldStack);
   // return a pointer to the new head
@@ -469,8 +478,9 @@ char *optFilename(char *oldPath)
   char pathElement[MAXPATHLENGTH];
   char *token;
   char *saveptr;
-  char *returnValue = stringAlloc(strlen(oldPath));
   int originalLength = strlen(oldPath);
+  int bufferSize = originalLength + 1;
+  char *returnValue = stringAlloc(originalLength);
   // tokenize the path
   for (; ; oldPath = NULL) {
     token = strtok_r(oldPath, "/", &saveptr);
@@ -486,9 +496,9 @@ char *optFilename(char *oldPath)
   returnValue[0] = '\0';
   while (pathStack != NULL) {
     char *helper = stringAlloc(originalLength);
-    pathStack = pop(pathStack, pathElement);
+    pathStack = pop(pathStack, pathElement, MAXPATHLENGTH);
     sprintf(helper, "/%s%s\0", pathElement, returnValue);
-    strcpy(returnValue, helper);
+    strncpy(returnValue, helper, bufferSize);
     free(helper);
   }
   return returnValue;

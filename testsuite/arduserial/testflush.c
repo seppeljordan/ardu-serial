@@ -15,7 +15,7 @@ int main() {
 	/* try to initialize the connection to the arduino */
 	tty = ser_autodetect(BAUDRATE);
 	/* Skip the test if the arduino was not found */
-	if (tty == -1)
+	if (tty == -2)
 		exit(TESTSKIP);
 	sleep(2); /* Wait until the arduino has reset */
 

@@ -23,7 +23,7 @@ int main(void)
   printf("There were some arduinos detected\n");
   while ( ardulist != NULL )
     {
-      ardulist = pop(ardulist, s);
+      ardulist = pop(ardulist, s, 512);
       printf("arduino found at %s\n", s);
       int fd = ser_init(s, 9600);
       if (fd == -1) {

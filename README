@@ -66,13 +66,17 @@ Now you can follow the instructions from "INSTALL".
 
 * Patch notes
 
+** version 2.3 (unreleased)
+   * =pop= function now demands a buffer size to prevent data leaks.
+   * Change =strcpy= calls to =strncpy=.
+
 ** version 2.2
    * The =ser_listarduinos= procedure now returns minimal paths to the
      detected arduinos without "=/../=" or "=/./=" in the path.
 
 ** version 2.1
-   * The =ser_autodetect= procedure returns -2 when no serial connection
-     is available
+   * The =ser_autodetect= procedure returns -2 when no serial
+     connection is available
    * Implemented new functionality: =ser_listarduinos()= now returns a
      list of the available connections to arduinos connected via usb.
    * Implement a data type =stringStack= for passing the list of

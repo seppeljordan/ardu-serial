@@ -32,7 +32,7 @@ int main()
   printf("There were some arduinos detected\n");
   while ( ardulist != NULL )
     {
-      ardulist = pop(ardulist, s);
+      ardulist = pop(ardulist, s, ARDUSERIAL_MAXLINE);
       if (! (isMinimal(s) )) {
 	printf("Path to arduino \"%s\" is not optimal, test FAILED.\n", s);
 	exit(TESTFAIL);

@@ -8,6 +8,7 @@
 #include "../testdef.h"
 #include "../../libarduserial/arduserial.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int file_exists(const char *filename);
 
